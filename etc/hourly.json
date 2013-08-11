@@ -2,6 +2,11 @@
     {
         "name": "空氣品質即時監測資料",
         "url": "http://cdx.epa.gov.tw/CDX/OpenData/PSI.xml",
-        "output": "epa/air-quality-measurement.xml"
+        "output": "epa/air-quality.xml"
+    },
+    {
+        "name": "紫外線即時監測資料",
+        "url": "http://cdx.epa.gov.tw/CDX/OpenData/UV.xml",
+        "output": "epa/uv.xml"
     }
 ]
