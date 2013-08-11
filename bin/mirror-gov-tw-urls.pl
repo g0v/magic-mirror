@@ -38,7 +38,7 @@ sub HELP_MESSAGE {
     exit;
 }
 
-my %opts; getopts("o:hc:", \%opts);
+my %opts; getopts("gho:c:", \%opts);
 
 if ($opts{c} && $opts{o}) {
     my $sites = JSON::PP->new->utf8->decode( read_file($opts{c}) );
@@ -47,6 +47,20 @@ if ($opts{c} && $opts{o}) {
 
     for (@$sites) {
         write_file $opts{o}, $_->{output}, fetch($_->{url});
+    }
+
+
+    if ($opts{g}) {
+        my $x = basename($0);
+
+        chdir($FindBin::Bin);
+        chomp( my $sha1 = `git log -1 --format='%H' $x` );
+
+        chdir($opts{o});
+        system("git add --all");
+        system("git commit -m 'autocommit with $x $sha1'");
+        system("git pull");
+        system("git push");
     }
 }
 else {
