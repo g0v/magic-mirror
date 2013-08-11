@@ -8,8 +8,8 @@ use FindBin;
 use JSON::PP;
 use HTTP::Tiny;
 use Getopt::Std;
-use File::Basename qw(dirname);
-use File::Path qw(make_path);
+use File::Basename ("dirname", "basename");
+use File::Path "make_path";
 
 sub write_file {
     my ($output_base, $output, $content) = @_;
