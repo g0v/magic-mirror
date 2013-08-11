@@ -1,0 +1,7 @@
+[
+    {
+        "name": "停水資訊",
+        "url": "http://www.water.gov.tw/06news/opendata_taiwater.asp",
+        "output": "water/suspension.csv"
+    }
+]
