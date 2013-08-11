@@ -9,14 +9,12 @@ use JSON::PP;
 use HTTP::Tiny;
 use Getopt::Std;
 use File::Basename qw(dirname);
+use File::Path qw(make_path);
 
 sub write_file {
-    my ($output, $content) = @_;
-    my $_output = "$FindBin::Bin/../data/$output";
-
-    my $dir = dirname($_output);
-    mkdir($dir) unless -d $dir;
-
+    my ($output_base, $output, $content) = @_;
+    my $_output = "${output_base}/$output";
+    make_path dirname($_output);
     open my $fh, ">", $_output;
     print $fh $content;
     close $fh;
@@ -36,19 +34,19 @@ sub fetch {
 }
 
 sub HELP_MESSAGE {
-    print "$0 -c etc/hourly.json\n";
+    print "$0 -c etc/hourly.json -o /data \n";
     exit;
 }
 
-my %opts; getopts("hc:", \%opts);
+my %opts; getopts("o:hc:", \%opts);
 
-if ($opts{c}) {
+if ($opts{c} && $opts{o}) {
     my $sites = JSON::PP->new->utf8->decode( read_file($opts{c}) );
 
     @$sites = grep { $_->{name} && $_->{url} && $_->{output} } @$sites;
 
     for (@$sites) {
-        write_file $_->{output}, fetch($_->{url});
+        write_file $opts{o}, $_->{output}, fetch($_->{url});
     }
 }
 else {
