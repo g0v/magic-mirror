@@ -1,0 +1,12 @@
+[
+    {
+        "name": "全國環境輻射偵測",
+        "url": "http://www.aec.gov.tw/open/gammamonitor.csv",
+        "output": "aec/gammamonitor.csv"
+    },
+    {
+        "name": "核能電廠運轉資訊",
+        "url": "http://www.aec.gov.tw/open/spds.csv",
+        "output": "aec/spds.csv"
+    }
+]
