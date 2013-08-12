@@ -7,6 +7,10 @@
     {
         "name": "核能電廠運轉資訊",
         "url": "http://www.aec.gov.tw/open/spds.csv",
-        "output": "aec/spds.csv"
+        "output": "aec/spds.csv",
+        "process": {
+            "processor": "spds-csv-to-json",
+            "output": "aec/spds.json"
+        }
     }
 ]

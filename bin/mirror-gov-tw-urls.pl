@@ -33,6 +33,19 @@ sub fetch {
     return $response->{content};
 }
 
+sub process {
+    my ($processor, $content) = @_;
+    my $plugin = "$FindBin::Bin/../processor/${processor}";
+    my $proc = do "$plugin";
+
+    unless ('CODE' eq ref($proc)) {
+        die "$plugin load fail: $@" if $@;
+        die "$plugin needs to return a sub.";
+    }
+
+    return $proc->($content);
+}
+
 sub HELP_MESSAGE {
     print "$0 -c etc/hourly.json -o /data \n";
     exit;
@@ -46,9 +59,14 @@ if ($opts{c} && $opts{o}) {
     @$sites = grep { $_->{name} && $_->{url} && $_->{output} } @$sites;
 
     for (@$sites) {
-        write_file $opts{o}, $_->{output}, fetch($_->{url});
-    }
+        my $fetched = fetch($_->{url});
+        write_file $opts{o}, $_->{output}, $fetched;
 
+        if ($_->{process}) {
+            my $processed = process($_->{process}{processor}, $fetched);
+            write_file $opts{o},$_->{process}{output}, $processed;
+        }
+    }
 
     if ($opts{g}) {
         my $x = basename($0);
