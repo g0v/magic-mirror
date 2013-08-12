@@ -2,7 +2,11 @@
     {
         "name": "全國環境輻射偵測",
         "url": "http://www.aec.gov.tw/open/gammamonitor.csv",
-        "output": "aec/gammamonitor.csv"
+        "output": "aec/gammamonitor.csv",
+        "process": {
+            "processor": "gammamonitor-csv-to-json",
+            "output": "aec/gammamonitor.json"
+        }
     },
     {
         "name": "核能電廠運轉資訊",
