@@ -1,0 +1,17 @@
+[
+    {
+        "name": "公司設立登記清冊",
+        "url": "http://gcis.nat.gov.tw/main/opendata/company_new.csv",
+        "output": "nat/company_new.csv"
+    },
+    {
+        "name": "公司變更登記清冊",
+        "url": "http://gcis.nat.gov.tw/main/opendata/company_change.csv",
+        "output": "nat/company_change.csv"
+    },
+    {
+        "name": "公司解散登記清冊",
+        "url": "http://gcis.nat.gov.tw/main/opendata/company_dismiss.csv",
+        "output": "nat/company_dismiss.csv"
+    }
+]
