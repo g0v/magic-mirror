@@ -1,0 +1,41 @@
+# -*- cperl -*-
+use v5.14;
+use strict;
+use warnings;
+use utf8;
+use Encode ();
+use JSON::PP ();
+use XML::Loy;
+use Geo::Coordinates::Converter;
+
+sub {
+    my $content = $_[0];
+    my @data;
+    my $loy = XML::Loy->new($content);
+
+    for my $el ($loy->find("Data")->each) {
+        my $data = {};
+        for my $tag ("SiteName", "Uvi", "Unit", "County", "DataCreationDate") {
+            my $_tag = $tag =~ s<([A-Z])>< "_" .lc($1) >egr =~ s!\A_!!r;
+            $data->{$_tag} = $el->find($tag)->[0]->all_text;
+        }
+
+        my $lon = $el->find("WGS84_LON")->[0]->all_text =~ s!,!.!gr;
+        my $lat = $el->find("WGS84_LAT")->[0]->all_text =~ s!,!.!gr;
+
+        my $point = Geo::Coordinates::Converter->new(
+            lat => $lat,
+            lng => $lon,
+            datum => "wgs84",
+            format => "dms"
+        )->convert("degree", "wgs84");
+
+        $data->{location} = {
+            lat => $point->lat,
+            lon => $point->lng,
+        };
+        push @data, $data;
+    }
+
+    return JSON::PP->new->utf8->pretty->encode(\@data);
+}
