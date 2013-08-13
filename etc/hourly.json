@@ -7,6 +7,10 @@
     {
         "name": "紫外線即時監測資料",
         "url": "http://cdx.epa.gov.tw/CDX/OpenData/UV.xml",
-        "output": "epa/uv.xml"
+        "output": "epa/uv.xml",
+        "process": {
+            "processor": "uv-xml-to-json",
+            "output": "epa/uv.json"
+        }
     }
 ]

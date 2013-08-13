@@ -9,7 +9,8 @@ use XML::Loy;
 use Geo::Coordinates::Converter;
 
 sub {
-    my $content = $_[0];
+    my $content = Encode::decode_utf8($_[0]);
+
     my @data;
     my $loy = XML::Loy->new($content);
 
