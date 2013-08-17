@@ -1,0 +1,118 @@
+# -*- perl -*-
+
+=encoding utf-8
+
+=head1 DESCRIPTION
+
+原 csv 欄位為
+
+    停水範圍,停水期間,恢復供水時間,查詢電話,發佈期間,發佈區域
+
+轉換成 json object 後，欄位名稱對應如下：
+
+    停水範圍: area
+    停水期間: interval_from, interval_until
+    恢復供水時間: interval_until
+    查詢電話: telephone
+    發佈期間: publish_from, publish_until
+    發佈區域: publish_area
+
+注意原欄位中的「期間」欄皆被拆成兩個時間欄位，表示起始時間與結束時間。
+
+所有欄位的值，皆為字串。所有時間欄位格式皆遵循 ISO8601 格式的字串。輸出成檔案後的
+字符編碼為 utf-8。
+
+每筆資料對應到一個 json object，整體輸出則為為 array。如：
+
+    [
+       {
+          "area" : "新竹市香山區:港南里、香山里、大庄里、美山里、朝山里、曲溪里、牛埔里(中華路四段451巷)、海山里、鹽水里、內湖里、南港里、中隘里、南隘里等停水。<BR>水壓降低地區：樹下里、浸水里、頂埔里、頂福里、中埔里、埔前里、虎林里、牛埔里。<BR>",
+          "interval_from" : "2013-08-15T10:00+08",
+          "interval_until" : "2013-08-16T09:00+08",
+          "publish_area" : "300新竹市新竹市",
+          "publish_duration" : "2013-08-06/2013-08-20",
+          "publish_from" : "2013-08-06",
+          "publish_until" : "2013-08-20",
+          "telephone" : "1910、新竹給水廠03-5714621，5733523、新竹服務所03-5714321"
+       },
+       {
+          "area" : "新北市汐止區茄苳里(茄苳路.茄安路.茄興路.茄福街.中華街)地區全部停水",
+          "interval_from" : "2013-8-28T09:00+08",
+          "interval_until" : "2013-8-28T15:00+08",
+          "publish_area" : "221新北市汐止區",
+          "publish_duration" : "2013-08-21/2013-08-28",
+          "publish_from" : "2013-08-21",
+          "publish_until" : "2013-08-28",
+          "telephone" : "(02)86464636"
+       },
+       ...
+    ]
+
+=cut
+
+
+use v5.14;
+use utf8;
+use strict;
+use warnings;
+
+use Encode ();
+use JSON::PP;
+use Text::CSV;
+use IO::String;
+use List::MoreUtils qw(mesh);
+
+sub {
+    my $content = Encode::decode(big5 => $_[0]);
+    my $io = IO::String->new($content);
+
+    my $csv = Text::CSV->new({ binary => 1, blank_is_undef => 0, empty_is_undef => 0 });
+
+    my @entry;
+    my @field_names = qw<area duration until telephone publish_duration publish_area>;
+
+    $csv->getline($io); # skip first header line.
+    while (my $row = $csv->getline($io)) {
+        @$row = map { s!\s+\z!!;  s!\A\s+!!; $_ } @$row;
+        push @entry, my $entry = { mesh(@field_names, @$row) };
+
+        if ($entry->{duration} =~ s!【(.+)】!!) {
+            $entry->{interval_comment} = $1;
+        }
+
+        my ($from, $until) = split "至", delete $entry->{duration};
+
+        $until ||= delete $entry->{until};
+
+        for ($from, $until) {
+            s![年月]!-!g;
+            s!\A ([0-9]{3}) (?=-) ! 1911+$1 !xe;
+            s!日! !;
+            s!時!:!;
+            s![起止]\z!00!;
+            s!:\z!:00!;
+            s!:0\z!:00!;
+            s! ([1-9]):! 0$1:!;
+            s! !T!;
+            s!\z!+08!;
+            s!/!-!g;
+        }
+
+        $entry->{interval_from} = $from;
+        $entry->{interval_until} = $until;
+
+        if (!$from || !$until) {
+            die $entry->{duration};
+        }
+
+        for($entry->{publish_duration}) {
+            s!/!-!g;
+            s!~!/!g;
+            s<-( [1-9] (?![0-9]) )><-0$1>gx;
+        }
+        @{$entry}{"publish_from", "publish_until"} = split "/", $entry->{publish_duration};
+    }
+
+    return JSON::PP->new->utf8->pretty->canonical->encode(\@entry);
+}
+
