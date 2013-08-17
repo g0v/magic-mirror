@@ -3,5 +3,10 @@
         "name": "地震報告",
         "url": "http://www.cwb.gov.tw/opendata/earthquake/EC.txt",
         "output": "cwb/earthquake.txt"
+    },
+    {
+        "name": "台電機組發電量",
+        "url": "http://stpc00601.taipower.com.tw/loadGraph/loadGraph/data/genary.txt",
+        "output": "taipower/genary.txt"
     }
 ]
