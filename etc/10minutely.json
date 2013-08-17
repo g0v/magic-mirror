@@ -7,6 +7,10 @@
     {
         "name": "台電機組發電量",
         "url": "http://stpc00601.taipower.com.tw/loadGraph/loadGraph/data/genary.txt",
-        "output": "taipower/genary.txt"
+        "output": "taipower/genary.txt",
+        "process": {
+            "processor": "taipower-genary-to-json",
+            "output": "taipower/generators.json"
+        }
     }
 ]
