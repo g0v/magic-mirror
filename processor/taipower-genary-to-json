@@ -1,0 +1,32 @@
+# -*- cperl -*-
+use v5.14;
+use utf8;
+use strict;
+use warnings;
+use Encode ();
+use JSON::PP;
+use IO::String;
+use List::MoreUtils qw(mesh);
+
+sub {
+    my $json = JSON::PP->new->canonical->utf8->pretty;
+
+    my $orig = $json->decode($_[0]);
+    my $updated_at = $orig->{""}."+08";
+    $updated_at =~ s! !T!;
+
+    my @entries;
+    for (@{$orig->{aaData}}) {
+        next unless $_->[4];
+        push @entries, {
+            updated_at => $updated_at,
+            power_type => $_->[0] =~ s!\A .+ \((.+)\) .+\z! $1 !erx,
+            device     => $_->[1] =~ s!&amp;!&!gr,
+            capacity   => $_->[2],
+            generating => $_->[3],
+            ratio      => $_->[4],
+        };
+    }
+
+    return $json->encode(\@entries);
+}
