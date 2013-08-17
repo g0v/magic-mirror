@@ -82,7 +82,8 @@ sub {
 
         my ($from, $until) = split "至", delete $entry->{duration};
 
-        $until ||= delete $entry->{until};
+        $until ||= $entry->{until};
+        delete $entry->{until};
 
         for ($from, $until) {
             s![年月]!-!g;
