@@ -1,0 +1,35 @@
+{
+  "author": "gugod",
+  "status": "magic",
+  "name": "magic-mirror",
+  "description": "Periodically mirror data from *.gov.tw to a git repository.",
+  "description_zh": "定時 mirror *.gov.tw 上有時效性的資料到 git repository.",
+  "homepage": "https://g0v.hackpad.com/magic-mirror-cD2GLTbZYL0",
+  "document": "https://g0v.hackpad.com/magic-mirror-cD2GLTbZYL0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/g0v/magic-mirror"
+  },
+  "licenses": [
+    {
+      "type": "CC0"
+    }
+  ],
+  "keywords": [
+    "perl",
+    "json",
+    "kml",
+    "data"
+  ],
+  "audience": [
+    "contributor"
+  ],
+  "products": [
+    "website"
+  ],
+  "projects": [],
+  "contributors": [],
+  "needs": [
+    "programmer"
+  ]
+}
