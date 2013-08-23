@@ -48,6 +48,57 @@ sub extract_data_description {
     );
 }
 
+sub fetch_all_data_list_by_oid {
+    my $url0 = URI->new("http://data.gov.tw/opendata/List");
+    my $dom = wq($url0);
+
+    my %visited_url;
+    $visited_url{$url0} = 1;
+
+    my @org;
+    my %org_title_by_oid;
+    $dom->find("ul.org a")->each(
+        sub {
+            my $href = $_->attr("href");
+            my $title = $_->attr("title");
+            my ($oid) = $href =~ m/oid=(.+)\z/;
+            my $url = URI->new_abs($href, $url0);
+            $org_title_by_oid{$oid} = $title;
+            push @org, {
+                title => $title,
+                oid => $oid,
+                url => $url
+            };
+        },
+    );
+
+    for my $o (@org) {
+        my ($oid) = $o->{url} =~ m/oid=(.+)\z/;
+        my $dom = wq($o->{url});
+        $visited_url{$o->{url}} = 1;
+
+        $dom->find(".gov_list a[href*=oid]")->each(
+            sub {
+                my $href = $_->attr("href");
+                my $title = $_->text =~ s!\(\d*\)!!r;
+                my ($oid2) = $href =~ m/oid=(.+)\z/;
+                my $url = URI->new_abs($href, $o->{url});
+                if (!$org_title_by_oid{$oid2}) {
+                    say "$title, $oid2";
+                    $org_title_by_oid{$oid2} = $title;
+                    push @org, {
+                        title => $title,
+                        oid   => $oid2,
+                        url   => $url,
+                    };
+                }
+            },
+        );
+    }
+
+    return @org;
+}
+
 sub fetch_all_data_list {
     my $url = "http://data.gov.tw/opendata/Search?format=ALL";
     my $base_uri = URI->new($url);
@@ -110,3 +161,5 @@ sub fetch_all_data_list {
 }
 
 print JSON::PP->new->pretty->canonical->encode(fetch_all_data_list());
+
+# fetch_all_data_list_by_oid();
