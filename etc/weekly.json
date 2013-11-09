@@ -1,5 +1,14 @@
 [
     {
+        "name": "政府資料開放平臺資料集清單",
+        "url": "http://data.gov.tw/opendata/addCount?sno=341000000A-00001&dataformat=csv&url=http%3a%2f%2fdata.gov.tw%2fopendatalistfile%2f%e6%94%bf%e5%ba%9c%e8%b3%87%e6%96%99%e9%96%8b%e6%94%be%e5%b9%b3%e8%87%ba%e8%b3%87%e6%96%99%e9%9b%86%e6%b8%85%e5%96%ae.csv",
+        "output": "data/list.csv",
+        "process": {
+            "processor": "data-list-csv-to-json",
+            "output": "data/list.json"
+        }
+    },
+    {
         "name": "公司設立登記清冊",
         "url": "http://gcis.nat.gov.tw/main/opendata/company_new.csv",
         "output": "nat/company_new.csv"

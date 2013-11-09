@@ -1,0 +1,72 @@
+#!/usr/bin/env perl
+use v5.14;
+use strict;
+use warnings;
+use Encode;
+use Text::CSV;
+use YAML;
+use List::MoreUtils qw(mesh);
+use File::Temp qw(tempfile);
+use JSON::PP;
+
+sub {
+    my $json = JSON::PP->new->canonical->utf8->pretty;
+    my $content = Encode::encode("UTF-8", Encode::decode("UTF-16", $_[0]));
+
+    my $out = tempfile();
+    print $out $content;
+    $out->seek(0,0);
+
+    my $csv = Text::CSV->new({ binary => 1, allow_loose_quotes => 1, escape_char => "" });
+    my $col = $csv->getline($out);
+    my @fields = @$col;
+    my @entries;
+    while ($col = $csv->getline($out)) {
+        push @entries, $col;
+    }
+
+    my @dataset;
+    my $process_one_dataset = sub {
+        my $group = shift;
+        my $col = $group->[0];
+        my $link = {};
+        my $dl = [];
+        for (my $i = 3; $i < @fields; $i++) {
+            push @$dl, {
+                title => $fields[$i],
+                description => $col->[$i],
+            };
+        }
+        for $col (@$group) {
+            $link->{$col->[1]} = $col->[2];
+        }
+        return {
+            _detail => "",
+            description_list => $dl,
+            title => $group->[0][0],
+            link  => $link,
+        };
+    };
+
+    # order by: 資料集提供機關,資料集名稱,檔案格式
+    @entries = map { $_->[1] } sort { $a->[0] cmp $b->[0] } map {[join(";", $_->[6], $_->[0], $_->[1]), $_]} @entries;
+
+    my $group = [];
+    for (my $i = 0; $i < @entries; $i++) {
+        # say STDERR Encode::encode_utf8($entries[$i]->[0]);
+        if ( 0 == @$group ) {
+            push @$group, $entries[$i];
+            next;
+        }
+        if ( ($entries[$i]->[6] eq $group->[0][6]) && ($entries[$i]->[0] eq $group->[0][0]) ) {
+            push @$group, $entries[$i];
+        }
+        else {
+            push @dataset, $process_one_dataset->($group);
+            $group = [];
+        }
+    }
+
+    push(@dataset, $process_one_dataset->($group)) if @$group;
+    return $json->encode(\@dataset);
+}
