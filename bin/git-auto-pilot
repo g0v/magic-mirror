@@ -8,11 +8,9 @@ _git_commit_all() {
 _git_sync_last=$(perl -e 'print time')
 _git_sync() {
     _git_sync_now=$(perl -e 'print time')
-    if [[ $(($git_sync_now - $_git_sync_last)) > 600 ]]; then
-        git add --all &&
-        git commit -m 'autocommit' &&
-        git pull --no-edit &&
-        git push
+    if [[ $(($git_sync_now - $_git_sync_last)) > 120 ]]; then
+        git add --all && git commit -m 'autocommit' 
+        git pull --no-edit && git push
         _git_sync_last=$(perl -e 'print time')
     fi
 }
