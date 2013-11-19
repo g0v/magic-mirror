@@ -1,0 +1,28 @@
+#!/bin/bash
+
+_git_commit_all() {
+    git add --all &&
+    git commit -m 'autocommit'
+}
+
+_git_sync_last=$(perl -e 'print time')
+_git_sync() {
+    _git_sync_now=$(perl -e 'print time')
+    if [[ $(($git_sync_now - $_git_sync_last)) > 120 ]]; then
+        git add --all && git commit -m 'autocommit' 
+        git pull --no-edit && git push
+        _git_sync_last=$(perl -e 'print time')
+    fi
+}
+
+if [[ "$1" != "" ]]; then
+    cd $1
+fi
+
+_git_sync
+
+while inotifywait -q -e close -r --format '%f' . ; do
+    _git_commit_all
+    _git_sync
+done
+
