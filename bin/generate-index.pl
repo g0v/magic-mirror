@@ -6,10 +6,11 @@ use JSON::PP;
 use Getopt::Std;
 
 my %opts;
-getopts("o:", \%opts);
+getopts("o:b:", \%opts);
 
 my $json = JSON::PP->new->utf8;
 
+my $base_url = $opts{b} || "http://g0v-data-mirror.gugod.org/";
 my @entries;
 local $/ = undef;
 for my $config (<${FindBin::Bin}/../etc/*.json>) {
@@ -18,13 +19,12 @@ for my $config (<${FindBin::Bin}/../etc/*.json>) {
     open my $fh, "<", $config;
     my $sites = $json->decode(<$fh>);
     for my $site (@$sites) {
-        my $base = "http://g0v-data.github.io/mirror/";
         push @entries, [
             $site->{name},
             $frequency,
             $site->{url},
-            $base . $site->{output},
-            $site->{process} ? $base . $site->{process}{output} : "",
+            $base_url . $site->{output},
+            $site->{process} ? $base_url . $site->{process}{output} : "",
         ];
     }
 }
@@ -42,7 +42,9 @@ for (@entries) {
 }
 
 $html = <<"HTML";
+<!doctype html>
 <html>
+    <meta charset="utf-8">
     <head><title>g0v-data mirror</title></head>
     <body>$html</body>
 </html>
