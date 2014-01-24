@@ -11,7 +11,7 @@ use JSON::PP;
 
 sub {
     my $json = JSON::PP->new->canonical->utf8->pretty;
-    my $content = Encode::encode("UTF-8", Encode::decode("UTF-16", $_[0]));
+    my $content = $_[0];
 
     my $out = tempfile();
     print $out $content;
