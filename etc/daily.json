@@ -11,6 +11,6 @@
     {
         "name": "全國細懸浮微粒手動監測資料",
         "url": "http://opendata.epa.gov.tw/ws/Data/PM25/?format=json",
-        "output": "epa/pm25.json",
+        "output": "epa/pm25.json"
     }
 ]
