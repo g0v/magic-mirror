@@ -3,5 +3,10 @@
         "name": "海外華人人數",
         "url": "http://www.ocac.gov.tw/public/DownFile/File_24979.csv",
         "output": "ocac/aboard_chinese_count.csv"
+    },
+    {
+        "name": "核子反應器設施持照運轉員人數",
+        "url": "http://www.aec.gov.tw/webpage/info/files/index_15_1-06.csv",
+        "output": "aec/nuclear_powerplant_licensed_operator_count.csv"
     }
 ]
