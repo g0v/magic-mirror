@@ -1,0 +1,7 @@
+[
+    {
+        "name": "海外華人人數",
+        "url": "http://www.ocac.gov.tw/public/DownFile/File_24979.csv",
+        "output": "ocac/aboard_chinese_count.csv"
+    }
+]
