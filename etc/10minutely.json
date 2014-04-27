@@ -20,7 +20,7 @@
     },
     {
         "name": "台電今日用電曲線圖-依能源類別",
-        "url": http://stpc00601.taipower.com.tw/loadGraph/loadGraph/data/loadfueltype.csv",
+        "url": "http://stpc00601.taipower.com.tw/loadGraph/loadGraph/data/loadfueltype.csv",
         "output": "taipower/loadfueltype.csv"
     }
 ]
