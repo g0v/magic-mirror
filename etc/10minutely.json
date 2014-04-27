@@ -12,5 +12,10 @@
             "processor": "taipower-genary-to-json",
             "output": "taipower/generators.json"
         }
+    },
+    {
+        "name": "台電今日用電曲線圖-依區域別",
+        "url": "http://stpc00601.taipower.com.tw/loadGraph/loadGraph/data/loadareas.csv",
+        "output": "taipower/loadareas.csv"
     }
 ]
