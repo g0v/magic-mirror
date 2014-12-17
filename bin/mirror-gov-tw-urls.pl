@@ -70,8 +70,17 @@ if ($opts{c} && $opts{o}) {
         write_file $opts{o}, $_->{output}, $fetched;
 
         if ($_->{process}) {
-            my $processed = process($_->{process}{processor}, $fetched);
-            write_file $opts{o},$_->{process}{output}, $processed;
+            my $processed;
+            eval {
+                $processed = process($_->{process}{processor}, $fetched);
+                1;
+            } or do {
+                my $err = $@;
+                warn "Process failed. $_->{process}{processor}\n$err\n";
+            };
+            if (defined $processed) {
+                write_file $opts{o},$_->{process}{output}, $processed;
+            }
         }
     }
 
