@@ -1,5 +1,20 @@
 [
     {
+        "name": "移動式量測各業者量測路線平均行動上網速率",
+        "url": "http://www.ncc.gov.tw/chinese/files/opendata/%E8%A1%8C%E7%B6%B2%E6%95%B8%E6%93%9A-%E7%A7%BB%E5%8B%95%E5%BC%8F%E9%87%8F%E6%B8%AC.csv",
+        "output": "ncc/mobile-speed-dynamic-location.csv"
+    },
+    {
+        "name": "定點量測各業者平均行動上網速率",
+        "url": "http://www.ncc.gov.tw/chinese/files/opendata/%E8%A1%8C%E7%B6%B2%E6%95%B8%E6%93%9A-%E5%AE%9A%E9%BB%9E%E9%87%8F%E6%B8%AC.csv",
+        "output": "ncc/mobile-speed-fixed-location.csv"
+    },
+    {
+        "name": "消費者端量測各業者縣市平均行動上網速率",
+        "url": "http://www.ncc.gov.tw/chinese/files/opendata/%E8%A1%8C%E7%B6%B2%E6%95%B8%E6%93%9A-%E6%B6%88%E8%B2%BB%E8%80%85%E7%AB%AF%E9%87%8F%E6%B8%AC.csv",
+        "output": "ncc/mobile-speed-consumer.csv"
+    },
+    {
         "name": "海外華人人數",
         "url": "http://www.ocac.gov.tw/public/DownFile/File_24979.csv",
         "output": "ocac/aboard_chinese_count.csv"
