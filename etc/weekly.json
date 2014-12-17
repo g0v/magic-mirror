@@ -2,11 +2,12 @@
     {
         "name": "政府資料開放平臺資料集清單",
         "url": "http://file.data.gov.tw/opendatafile/%E6%94%BF%E5%BA%9C%E8%B3%87%E6%96%99%E9%96%8B%E6%94%BE%E5%B9%B3%E8%87%BA%E8%B3%87%E6%96%99%E9%9B%86%E6%B8%85%E5%96%AE.csv",
-        "output": "data/list.csv",
-        "process": {
-            "processor": "data-list-csv-to-json",
-            "output": "data/list.json"
-        }
+        "output": "data/list.csv"
+    },
+    {
+        "name": "政府資料開放平臺資料集清單 (JSON)",
+        "url": "http://file.data.gov.tw/opendatafile/%E6%94%BF%E5%BA%9C%E8%B3%87%E6%96%99%E9%96%8B%E6%94%BE%E5%B9%B3%E8%87%BA%E8%B3%87%E6%96%99%E9%9B%86%E6%B8%85%E5%96%AE.json",
+        "output": "data/list-official.json"
     },
     {
         "name": "公司設立登記清冊",
