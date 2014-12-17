@@ -27,10 +27,15 @@ sub read_file {
 }
 
 sub fetch {
+    my $url = shift;
     my $ua = HTTP::Tiny->new;
-    my $response = $ua->get($_[0]);
-    die "fetch failed" unless $response->{success};
-    return $response->{content};
+    my $response = $ua->get($url);
+    if ($response->{success}) {
+        return $response->{content};
+    }
+
+    warn "fetch failed: url = $url";
+    return;
 }
 
 sub process {
@@ -60,6 +65,8 @@ if ($opts{c} && $opts{o}) {
 
     for (@$sites) {
         my $fetched = fetch($_->{url});
+        next unless defined $fetched;
+
         write_file $opts{o}, $_->{output}, $fetched;
 
         if ($_->{process}) {
