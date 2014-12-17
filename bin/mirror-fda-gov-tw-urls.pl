@@ -9,7 +9,7 @@ use HTTP::Tiny;
 use Getopt::Std;
 
 use File::Copy "copy";
-use File::Temp "tempdir"
+use File::Temp "tempdir";
 use File::Path "make_path";
 use File::Basename "basename";
 use Archive::Zip qw( :ERROR_CODES :CONSTANTS );;
