@@ -1,8 +1,7 @@
 #!/bin/bash
 
 _git_commit_all() {
-    git add --all &&
-    git commit --allow-empty-message --no-edit --author 'Auto Pilot <noreply@localhost>'
+    git commit -a --allow-empty-message --no-edit --author 'Auto Pilot <noreply@localhost>'
 }
 
 _git_sync_last=$(perl -e 'print time')
