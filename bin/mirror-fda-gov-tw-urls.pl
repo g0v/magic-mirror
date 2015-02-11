@@ -25,7 +25,7 @@ make_path($real_outdir) unless -d $real_outdir;
 my $ua = HTTP::Tiny->new;
 
 my $csvBaseUrl = 'http://data.fda.gov.tw/opendata/exportDataList.do?method=ExportData&logType=2&InfoId=';
-for my $id (1..74) {
+for my $id (1..135) {
     my $outdir = tempdir( CLEANUP => 1 );
     chdir($outdir);
 
