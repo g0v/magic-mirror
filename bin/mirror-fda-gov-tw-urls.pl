@@ -25,7 +25,8 @@ make_path($real_outdir) unless -d $real_outdir;
 my $ua = HTTP::Tiny->new;
 
 my $csvBaseUrl = 'http://data.fda.gov.tw/opendata/exportDataList.do?method=ExportData&logType=2&InfoId=';
-for my $id (1..135) {
+for my $id (80, 135) {
+# for my $id (1..135) {
     my $outdir = tempdir( CLEANUP => 1 );
     chdir($outdir);
 
@@ -34,9 +35,13 @@ for my $id (1..135) {
     my $response = $ua->get($url);
     die "fetch failed" unless $response->{success};
 
-    if ($response->{headers}{'content-type'} =~ /zip/) {
+    my $ct = $response->{headers}{'content-type'};
+
+    die "content-type is unexpected: $ct" if $ct =~ /html/i;
+
+    if ($ct =~ /zip/) {
         my $zip_io = IO::String->new($response->{content});
-        
+
         my $zip = Archive::Zip->new;
         $zip->readFromFileHandle($zip_io);
 
