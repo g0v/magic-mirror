@@ -36,9 +36,9 @@ for my $id (1..135) {
 
     my $ct = $response->{headers}{'content-type'};
 
-    die "content-type is unexpected: $ct" if $ct =~ /html/i;
-
-    if ($ct =~ /zip/) {
+    if ($ct =~ /html/i) {
+        warn "(dataset id = $id) content-type is unexpected: $ct";
+    } elsif ($ct =~ /zip/) {
         my $zip_io = IO::String->new($response->{content});
 
         my $zip = Archive::Zip->new;
