@@ -38,6 +38,8 @@ for my $id (1..135) {
 
     if ($ct =~ /html/i) {
         warn "(dataset id = $id) content-type is unexpected: $ct";
+        next;
+
     } elsif ($ct =~ /zip/) {
         my $zip_io = IO::String->new($response->{content});
 
@@ -51,10 +53,10 @@ for my $id (1..135) {
         print $fh $response->{content};
         close($fh);
     }
+}
 
-    for my $path (<$outdir/*.csv>) {
-        my $filename = basename($path);
-        my $real_output = $real_outdir . "/$filename";
-        copy($path, $real_outdir);
-    }
+for my $path (<$outdir/*.csv>) {
+    my $filename = basename($path);
+    my $real_output = $real_outdir . "/$filename";
+    copy($path, $real_outdir);
 }
