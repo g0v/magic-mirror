@@ -38,5 +38,5 @@ sub {
         push @data, $data;
     }
 
-    return JSON::PP->new->utf8->pretty->encode(\@data);
+    return JSON::PP->new->utf8->pretty->canonical->encode(\@data);
 }

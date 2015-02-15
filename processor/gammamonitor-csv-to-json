@@ -26,5 +26,5 @@ sub {
         } 1..$#$csv
     ];
 
-    return JSON::PP->new->utf8->pretty->encode($monitors);
+    return JSON::PP->new->utf8->pretty->canonical->encode($monitors);
 }

@@ -39,5 +39,5 @@ sub {
         } } 0..$#machine
     ];
 
-    return JSON::PP->new->utf8->pretty->encode($spds);
+    return JSON::PP->new->utf8->pretty->canonical->encode($spds);
 }
