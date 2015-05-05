@@ -1,18 +1,11 @@
 #!/bin/bash
 
+_git_commit_all_last=$(perl -e 'print time')
 _git_commit_all() {
-    git commit -a --allow-empty-message --no-edit --author 'Auto Pilot <noreply@localhost>'
-}
-
-_git_sync_last=$(perl -e 'print time')
-_git_sync() {
-    _git_sync_now=$(perl -e 'print time')
-    if [[ $(($git_sync_now - $_git_sync_last)) > 3600 ]]; then
-        _git_commit_all
-
-        git gc --aggressive --prune=now && git pull --no-edit && git push
-
-        _git_sync_last=$(perl -e 'print time')
+    __now=$(perl -e 'print time')
+    if (( $(($__now - $_git_commit_all_last)) > 30 )); then
+        git commit -a --allow-empty-message --no-edit --author 'Auto Pilot <noreply@localhost>'
+        _git_commit_all_last=$(perl -e 'print time')
     fi
 }
 
@@ -20,10 +13,7 @@ if [[ "$1" != "" ]]; then
     cd $1
 fi
 
-_git_sync
-
 while inotifywait -q -e close -r --format '%f' . ; do
     _git_commit_all
-    _git_sync
 done
 
