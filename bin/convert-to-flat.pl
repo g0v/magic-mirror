@@ -6,7 +6,10 @@ use autodie;
 use File::Path qw<make_path>;
 use List::MoreUtils qw<apply>;
 
-my ($mirror_repo, $flat_mirror_repo) = apply { s</$><>; } @ARGV;
+use Parallel::ForkManager;
+
+my ($mirror_repo, $flat_mirror_repo) = apply { s</$><>; } @ARGV[0,1];
+my $dataset = $ARGV[2] || "*/*";
 
 my @dataset = map {
     my ($name, $format) = m<\A(.+)\.([a-z]{3,4})\z>;
@@ -18,11 +21,16 @@ my @dataset = map {
 } apply {
     s<\A${mirror_repo}><>;
     s<^/><>;                    #// wtfemacs
-} sort glob("${mirror_repo}/*/*");
+} sort glob("${mirror_repo}/${dataset}");
 
 chdir $mirror_repo;
 
+my $forkman = Parallel::ForkManager->new(2);
+
 for my $dataset (@dataset) {
+    say ">> $dataset->{filename}";
+    $forkman->start and next;
+
     my $cmd = "git log --format='%H %at' $dataset->{filename}";
     open my $fh, "-|", $cmd;
     while (<$fh>) {
@@ -37,8 +45,14 @@ for my $dataset (@dataset) {
         my $flat_dir = $flat_mirror_repo . "/" . $dataset->{name} . "/" . $p_dir;
         my $flat_file_name =  $flat_dir . "/" . $p . "." . $dataset->{format};
 
+        last if -f $flat_file_name;
+
+        say ">> $flat_file_name";
         make_path($flat_dir) unless -d $flat_dir;
         system("git show ${sha1}:$dataset->{filename} > $flat_file_name");
     }
-    close($fh);
+
+    $forkman->finish;
 }
+$forkman->wait_all_children;
+
