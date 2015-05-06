@@ -4,6 +4,7 @@ _git_commit_all_last=$(perl -e 'print time')
 _git_commit_all() {
     __now=$(perl -e 'print time')
     if (( $(($__now - $_git_commit_all_last)) > 30 )); then
+        git add -A
         git commit -a --allow-empty-message --no-edit --author 'Auto Pilot <noreply@localhost>'
         _git_commit_all_last=$(perl -e 'print time')
     fi
@@ -13,7 +14,7 @@ if [[ "$1" != "" ]]; then
     cd $1
 fi
 
-while inotifywait -q -e close -r --format '%f' . ; do
+while inotifywait -q -e close_write -r --exclude .git . ; do
     _git_commit_all
 done
 
