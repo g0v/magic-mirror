@@ -22,5 +22,10 @@
             "processor": "uv-xml-to-json",
             "output": "epa/uv.json"
         }
+    },
+    {
+        "name": "血液庫存量",
+        "url": "http://g0v.github.io/blood/blood.json",
+        "output": "blood/blood.json"
     }
 ]
