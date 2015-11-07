@@ -5,6 +5,11 @@
         "output": "ly/223_CSV.csv"
     },
     {
+        "name": "立法院 各委員會-委員名單資料 CSV",
+        "url": "http://data.ly.gov.tw/odw/usageFile.action?id=14&type=CSV&fname=14_CSV.csv",
+        "output": "ly/14_CSV.csv"
+    },
+    {
         "name": "停水資訊",
         "url": "http://www.water.gov.tw/06news/opendata_taiwater.asp",
         "output": "water/suspension.csv",
