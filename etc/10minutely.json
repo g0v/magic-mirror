@@ -1,5 +1,10 @@
 [
     {
+        "name": "中央氣象局雨量站觀測資料 - 每10分鐘雨量站觀測資料",
+        "url": "https://alerts.ncdr.nat.gov.tw/DownLoadNewAssistData.ashx/5",
+        "output": "nat/cwb-rain.kml"
+    },
+    {
         "name": "地震報告",
         "url": "http://www.cwb.gov.tw/opendata/earthquake/EC.txt",
         "output": "cwb/earthquake.txt"
