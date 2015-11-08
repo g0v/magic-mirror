@@ -1,5 +1,10 @@
 [
     {
+        "name": "糧價查詢",
+        "url": "http://m.coa.gov.tw/opendata/RicepriceData.aspx",
+        "output": "coa/rice-price.json"
+    },
+    {
         "name": "立法院委員發言名單 CSV",
         "url": "http://data.ly.gov.tw/odw/usageFile.action?id=223&type=CSV&fname=223_CSV.csv",
         "output": "ly/223_CSV.csv"
