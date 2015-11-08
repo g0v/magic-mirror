@@ -1,5 +1,10 @@
 [
     {
+        "name": "警廣即時路況",
+        "url": "http://data.moi.gov.tw/MoiOD/System/DownloadFile.aspx?DATA=1E91AC2B-48B3-47A3-83B4-EB4A8AD930B9",
+        "output": "moi/realtime-traffic-condition.json"
+    },
+    {
         "name": "中央氣象局雨量站觀測資料 - 每10分鐘雨量站觀測資料",
         "url": "https://alerts.ncdr.nat.gov.tw/DownLoadNewAssistData.ashx/5",
         "output": "nat/cwb-rain.kml"
