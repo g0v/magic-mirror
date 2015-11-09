@@ -1,5 +1,10 @@
 [
     {
+        "name": "全國細懸浮微粒手動監測資料",
+        "url": "http://opendata.epa.gov.tw/ws/Data/PM25/?format=csv",
+        "output": "epa/pm25.csv"
+    },
+    {
         "name": "糧價查詢",
         "url": "http://m.coa.gov.tw/opendata/RicepriceData.aspx",
         "output": "coa/rice-price.json"
