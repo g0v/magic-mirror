@@ -1,5 +1,10 @@
 [
     {
+        "name": "毛豬交易行情",
+        "url": "http://m.coa.gov.tw/OpenData/AnimalTransData.aspx",
+        "output": "coa/animal-transaction.json"
+    },
+    {
         "name": "全國細懸浮微粒手動監測資料",
         "url": "http://opendata.epa.gov.tw/ws/Data/PM25/?format=csv",
         "output": "epa/pm25.csv"
