@@ -1,5 +1,10 @@
 [
     {
+        "name" : "全國宗教資訊系統資料-慶(祭)典",
+        "url": "http://religion.moi.gov.tw/Report/Festival.xml",
+        "output": "moi/religion-festival.xml"
+    },
+    {
         "name": "移動式量測各業者量測路線平均行動上網速率",
         "url": "http://www.ncc.gov.tw/chinese/files/opendata/%E8%A1%8C%E7%B6%B2%E6%95%B8%E6%93%9A-%E7%A7%BB%E5%8B%95%E5%BC%8F%E9%87%8F%E6%B8%AC.csv",
         "output": "ncc/mobile-speed-dynamic-location.csv"
