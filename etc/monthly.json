@@ -1,5 +1,10 @@
 [
     {
+        "name": "電磁波量測資料",
+        "url": "http://opendata.epa.gov.tw/ws/Data/RADElecWave/?format=csv",
+        "output": "epa/RADElecWave.csv"
+    },
+    {
         "name" : "經濟部工業局 遊戲軟體分級",
         "url": "http://www.gamerating.org.tw/download_rating.php",
         "output": "gamerating/gamerating.csv"
