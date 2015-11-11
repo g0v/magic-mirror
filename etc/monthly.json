@@ -1,5 +1,10 @@
 [
     {
+        "name" : "經濟部工業局 遊戲軟體分級",
+        "url": "http://www.gamerating.org.tw/download_rating.php",
+        "output": "gamerating/gamerating.csv"
+    },
+    {
         "name" : "全國宗教資訊系統資料-慶(祭)典",
         "url": "http://religion.moi.gov.tw/Report/Festival.xml",
         "output": "moi/religion-festival.xml"
