@@ -1,5 +1,10 @@
 [
     {
+        "name": "各工廠空氣污染物排放資料 (各列管工廠依法規向地方主管機關申報之排放量資料)",
+        "url": "http://opendata.epa.gov.tw/ws/Data/FactoryAirPollutant/?format=csv",
+        "output": "epa/FactoryAirPollutant.csv"
+    },
+    {
         "name": "電磁波量測資料",
         "url": "http://opendata.epa.gov.tw/ws/Data/RADElecWave/?format=csv",
         "output": "epa/RADElecWave.csv"
