@@ -10,6 +10,7 @@ use HTTP::Tiny;
 use Getopt::Std;
 use File::Basename ("dirname", "basename");
 use File::Path "make_path";
+use Parallel::ForkManager;
 
 sub write_file {
     my ($output_base, $output, $content) = @_;
@@ -63,7 +64,9 @@ if ($opts{c} && $opts{o}) {
 
     @$sites = grep { $_->{name} && $_->{url} && $_->{output} } @$sites;
 
+    my $forkman = Parallel::ForkManager->new(4);
     for (@$sites) {
+        $forkman->start and next;
         my $fetched = fetch($_->{url});
         next unless defined $fetched;
 
@@ -82,7 +85,9 @@ if ($opts{c} && $opts{o}) {
                 write_file $opts{o},$_->{process}{output}, $processed;
             }
         }
+        $forkman->finish;
     }
+    $forkman->wait_all_children;
 
     if ($opts{g}) {
         my $x = basename($0);
