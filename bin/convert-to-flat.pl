@@ -5,6 +5,10 @@ use warnings;
 use autodie;
 use File::Path qw<make_path>;
 use List::MoreUtils qw<apply>;
+use Getopt::Long;
+
+my %opts;
+GetOptions(\%opts, 'year=n');
 
 use Parallel::ForkManager;
 
@@ -39,19 +43,24 @@ for my $dataset (@dataset) {
         my @t = (gmtime($author_timestamp))[5,4,3,2,1];
         $t[0] += 1900;
         $t[1] += 1;
+
+        if ($opts{year}) {
+            last if $t[0] < $opts{year};
+            next if $t[0] > $opts{year};
+        }
+
         my $p_dir = sprintf('%04d-%02d-%02d', @t[0,1,2]);
         my $p = sprintf('%02d-%02d', @t[3,4]);
 
         my $flat_dir = $flat_mirror_repo . "/" . $dataset->{name} . "/" . $p_dir;
         my $flat_file_name =  $flat_dir . "/" . $p . "." . $dataset->{format};
 
-        last if -f $flat_file_name;
+        last if !$opts{year} && -f $flat_file_name;
 
         say ">> $flat_file_name";
         make_path($flat_dir) unless -d $flat_dir;
         system("git show ${sha1}:$dataset->{filename} > $flat_file_name");
     }
-
     $forkman->finish;
 }
 $forkman->wait_all_children;
