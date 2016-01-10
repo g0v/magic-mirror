@@ -1,5 +1,10 @@
 [
     {
+        "name": "國產牛肉追溯資訊系統 (牛隻屠宰日期及場所)",
+        "url": "http://data.coa.gov.tw/Service/OpenData/TraceBeefData.aspx",
+        "output": "coa/beef-slaughter.json"
+    },
+    {
         "name": "毛豬交易行情",
         "url": "http://m.coa.gov.tw/OpenData/AnimalTransData.aspx",
         "output": "coa/animal-transaction.json"
