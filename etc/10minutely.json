@@ -1,8 +1,8 @@
 [
     {
-        "name": "EMIC災害應變"
-        "url": "http://portal.emic.gov.tw/pub/DSP/OpenData/EEM/CEOCopen.xml"
-        "output": "emic/CEOCopen.xml",
+        "name": "EMIC災害應變",
+        "url": "http://portal.emic.gov.tw/pub/DSP/OpenData/EEM/CEOCopen.xml",
+        "output": "emic/CEOCopen.xml"
     },
     {
         "name": "自動雨量站-雨量觀測資料",
