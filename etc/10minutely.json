@@ -1,5 +1,10 @@
 [
     {
+        "name": "EMIC災害應變"
+        "url": "http://portal.emic.gov.tw/pub/DSP/OpenData/EEM/CEOCopen.xml"
+        "output": "emic/CEOCopen.xml",
+    },
+    {
         "name": "自動雨量站-雨量觀測資料",
         "url": "http://opendata.cwb.gov.tw/govdownload?dataid=O-A0002-001&authorizationkey=rdec-key-123-45678-011121314",
         "output": "cwb/rain-probe.xml"
