@@ -1,5 +1,10 @@
 [
     {
+        "name": "台南20160206地震事件",
+        "url": "http://data.tainan.gov.tw/dataset/98c119bd-5472-43ab-9b5d-3de0aa8e61df/resource/dec162fa-078d-4fa7-bd32-8df78b8d9f13/download/0206.kml",
+        "output": "tainan-0206-earthquake/0206.kml"
+    },
+    {
         "name": "空氣品質預報資料",
         "url": "http://opendata.epa.gov.tw/ws/Data/AQFN/?format=csv",
         "output": "epa/aqfn.csv"
