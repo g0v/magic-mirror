@@ -42,5 +42,10 @@
         "name": "台電今日用電曲線圖-依能源類別",
         "url": "http://stpc00601.taipower.com.tw/loadGraph/loadGraph/data/loadfueltype.csv",
         "output": "taipower/loadfueltype.csv"
+    },
+    {
+        "name": "新北市-車輛偵測器動態資訊",
+        "url": "http://data.ntpc.gov.tw/api/v1/rest/datastore/382000000A-000357-001",
+        "output": "ntpc/vehicle-detection.json"
     }
 ]
