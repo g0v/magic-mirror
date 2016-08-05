@@ -1,5 +1,10 @@
 [
     {
+        "name": "全國焚化廠空污檢測資料",
+        "url": "http://opendata.epa.gov.tw/ws/Data/SWIMSAir/?format=json",
+        "output": "epa/SWIMSAir.json"
+    },
+    {
         "name": "水庫水質監測資料",
         "url": "http://opendata.epa.gov.tw/ws/Data/WQXDam/?format=csv",
         "output": "epa/WQXDam.csv"
