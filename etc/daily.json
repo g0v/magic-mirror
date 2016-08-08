@@ -42,5 +42,10 @@
         "name": "全國細懸浮微粒手動監測資料",
         "url": "http://opendata.epa.gov.tw/ws/Data/PM25/?format=json",
         "output": "epa/pm25.json"
+    },
+    {
+        "name": "新北市公車路線清單",
+        "url": "http://data.ntpc.gov.tw/od/data/api/5D3B5FE3-549A-40D5-8FA3-0C691230B213?$format=csv",
+        "output": "ntpc/bus-routes.csv"
     }
 ]
