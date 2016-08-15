@@ -62,5 +62,10 @@
         "name": "新北市垃圾清運車輛所在位置",
         "url": "http://data.ntpc.gov.tw/od/data/api/28AB4122-60E1-4065-98E5-ABCCB69AACA6?$format=csv",
         "output": "ntpc/garbage-collection-trunk-position.csv"
+    },
+    {
+        "name": "新北市公共自行車租賃系統(YouBike)",
+        "url": "http://data.ntpc.gov.tw/api/v1/rest/datastore/382000000A-000352-001",
+        "output": "ntpc/youbike-stations.json"
     }
 ]
