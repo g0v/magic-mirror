@@ -62,7 +62,7 @@ my %opts; getopts("gho:c:", \%opts);
 if ($opts{c} && $opts{o}) {
     my $sites = JSON::PP->new->utf8->decode( read_file($opts{c}) );
 
-    @$sites = grep { $_->{name} && $_->{url} && $_->{output} } @$sites;
+    @$sites = grep { $_->{name} && $_->{url} && ($_->{output} || $_->{process}) } @$sites;
 
     my $forkman = Parallel::ForkManager->new(4);
     for (@$sites) {
@@ -70,8 +70,9 @@ if ($opts{c} && $opts{o}) {
         my $fetched = fetch($_->{url});
         next unless defined $fetched;
 
-        write_file $opts{o}, $_->{output}, $fetched;
-
+        if (defined($_->{output})) {
+            write_file $opts{o}, $_->{output}, $fetched;
+        }
         if ($_->{process}) {
             my $processed;
             eval {
