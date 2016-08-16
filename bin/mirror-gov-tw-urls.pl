@@ -67,8 +67,7 @@ if ($opts{c} && $opts{o}) {
     my $forkman = Parallel::ForkManager->new(4);
     for (@$sites) {
         $forkman->start and next;
-        my $fetched = fetch($_->{url});
-        next unless defined $fetched;
+        my $fetched = fetch($_->{url}) or $forkman->finish;
 
         if (defined($_->{output})) {
             write_file $opts{o}, $_->{output}, $fetched;
