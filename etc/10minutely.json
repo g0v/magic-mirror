@@ -13,6 +13,11 @@
         "output": "emic/CEOCopen.xml"
     },
     {
+        "name": "顯著有感地震報告",
+        "url": "http://opendata.cwb.gov.tw/govdownload?dataid=E-A0015-001R&authorizationkey=rdec-key-123-45678-011121314",
+        "output": "cwb/earthquake.xml"
+    },
+    {
         "name": "自動雨量站-雨量觀測資料",
         "url": "http://opendata.cwb.gov.tw/govdownload?dataid=O-A0002-001&authorizationkey=rdec-key-123-45678-011121314",
         "output": "cwb/rain-probe.xml"
