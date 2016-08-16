@@ -1,0 +1,12 @@
+#!/usr/bin/env perl
+use v5.14;
+use strict;
+use warnings;
+
+use Gzip::Faster qw(gunzip);
+
+sub {
+    my ($compressed_content) = @_;
+    my $content = gunzip($compressed_content);
+    return $content;
+}
