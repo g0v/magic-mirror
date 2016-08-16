@@ -57,20 +57,23 @@ sub HELP_MESSAGE {
     exit;
 }
 
-my %opts; getopts("gho:c:", \%opts);
+my %opts; getopts("vgho:c:j:", \%opts);
 
 if ($opts{c} && $opts{o}) {
     my $sites = JSON::PP->new->utf8->decode( read_file($opts{c}) );
 
     @$sites = grep { $_->{name} && $_->{url} && ($_->{output} || $_->{process}) } @$sites;
 
-    my $forkman = Parallel::ForkManager->new(4);
+    my $forkman = Parallel::ForkManager->new($opts{j} // 4);
     for (@$sites) {
         $forkman->start and next;
         my $fetched = fetch($_->{url}) or $forkman->finish;
 
+        say "DONE fetching from $_->{url}" if $opts{v};
+
         if (defined($_->{output})) {
             write_file $opts{o}, $_->{output}, $fetched;
+            say "DONE written to $_->{output}" if $opts{v};
         }
         if ($_->{process}) {
             my $processed;
@@ -83,6 +86,7 @@ if ($opts{c} && $opts{o}) {
             };
             if (defined $processed) {
                 write_file $opts{o},$_->{process}{output}, $processed;
+                say "DONE processing and written to $_->{process}{output}" if $opts{v};
             }
         }
         $forkman->finish;
