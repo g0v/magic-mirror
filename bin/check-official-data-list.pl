@@ -39,10 +39,10 @@ for (my $i = 0; $i < @$records; $i++) {
         if ($uri_scheme =~ /\A https? \z/x) {
             $seen{$url} = $record;
         } else {
-            report_error({ error => "Unsupported URI scheme.",  record => $record });
+            report_error({ error => "Unsupported URI scheme.", url => $url, record => $record });
         }
     } else {
-        report_error({ error => "undefined uri scheme.",  record => $record });
+        report_error({ error => "undefined uri scheme.",  url => $url, record => $record });
     }
 }
 
@@ -50,6 +50,10 @@ for my $url (sort { $a cmp $b } keys %seen) {
     my $http = HTTP::Tiny->new;
     my $response = $http->get($url);
     unless ( $response->{success} ) {
-        report_error({ error => "Non-successful http response.",  record => $seen{$url}, response => $response });
+        report_error({
+            error => "Non-successful http response.",
+            url   => $url,
+            record => $seen{$url}, response => $response
+        });
     }
 }
