@@ -1,5 +1,14 @@
 [
     {
+	"name": "TISV 路段靜態資訊",
+	"url": "http://tisvcloud.freeway.gov.tw/roadlevel_info.xml.gz",
+        "process": {
+            "processor": "gzip-decompress",
+            "output": "tisv/roadlevel_info.xml"
+        },
+	"comment": "Data source http://tisvcloud.freeway.gov.tw/"
+    },
+    {
         "name": "臺北市今日施工資訊",
         "url": "http://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire&rid=201d8ae8-dffc-4d17-ae1f-e58d8a95b162",
         "output": "tpc/today-construction.json"

@@ -1,5 +1,14 @@
 [
     {
+	"name": "TISV 路段一分鐘動態資訊",
+	"url": "http://tisvcloud.freeway.gov.tw/roadlevel_value.xml.gz",
+        "process": {
+            "processor": "gzip-decompress",
+            "output": "tisv/roadlevel_value.xml"
+        },
+	"comment": "Data source http://tisvcloud.freeway.gov.tw/"
+    },
+    {
         "name": "全國環境輻射偵測",
         "url": "http://www.aec.gov.tw/open/gammamonitor.csv",
         "output": "aec/gammamonitor.csv",
