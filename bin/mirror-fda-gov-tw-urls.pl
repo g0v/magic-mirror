@@ -14,6 +14,8 @@ use File::Path "make_path";
 use File::Basename "basename";
 use Archive::Zip qw( :ERROR_CODES :CONSTANTS );;
 
+exit(1) if -f "/tmp/stop-magic-mirror";
+
 my %opts; getopts("o:", \%opts);
 
 unless ($opts{o}) {

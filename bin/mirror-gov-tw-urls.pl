@@ -57,6 +57,8 @@ sub HELP_MESSAGE {
     exit;
 }
 
+exit(1) if -f "/tmp/stop-magic-mirror";
+
 my %opts; getopts("vgho:c:j:", \%opts);
 
 if ($opts{c} && $opts{o}) {
