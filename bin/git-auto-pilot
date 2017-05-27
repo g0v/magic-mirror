@@ -6,6 +6,7 @@ _git_commit_all() {
     if (( $(($__now - $_git_commit_all_last)) > 30 )); then
         git add -A
         git commit -a --allow-empty-message --no-edit --author 'Auto Pilot <noreply@localhost>'
+	git push github master
         _git_commit_all_last=$(perl -e 'print time')
     fi
 }
@@ -14,7 +15,10 @@ if [[ "$1" != "" ]]; then
     cd $1
 fi
 
-while inotifywait -q -e close_write -r --exclude .git . ; do
+# while inotifywait -q -e close_write -r --exclude .git . ; do
+while true; do
+    echo -n '# '; date;
     _git_commit_all
+    sleep 40
 done
 
