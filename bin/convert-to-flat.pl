@@ -10,6 +10,8 @@ use Getopt::Long;
 my %opts;
 GetOptions(\%opts, 'year=n');
 
+die "$0 --year=NNNN /dir/mirror_repo /dir/flat_repo" if @ARGV < 2;
+
 use Parallel::ForkManager;
 
 my ($mirror_repo, $flat_mirror_repo) = apply { s</$><>; } @ARGV[0,1];
