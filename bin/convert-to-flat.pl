@@ -8,7 +8,7 @@ use List::MoreUtils qw<apply>;
 use Getopt::Long;
 
 my %opts;
-GetOptions(\%opts, 'year=n');
+GetOptions(\%opts, 'year=n', 'force');
 
 die "$0 --year=NNNN /dir/mirror_repo /dir/flat_repo" if @ARGV < 2;
 
@@ -72,7 +72,7 @@ for my $dataset (@dataset) {
         my $flat_dir = $flat_mirror_repo . "/" . $dataset->{name} . "/" . $p_dir;
         my $flat_file_name =  $flat_dir . "/" . $p . "." . $dataset->{format};
 
-        last if !$opts{year} && -f $flat_file_name;
+        last if !$opts{force} && -f $flat_file_name;
 
         say ">> $flat_file_name";
         make_path($flat_dir) unless -d $flat_dir;
