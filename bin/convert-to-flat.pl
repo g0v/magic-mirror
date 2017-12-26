@@ -4,15 +4,14 @@ use strict;
 use warnings;
 use autodie;
 use File::Path qw<make_path>;
+use List::Util qw<shuffle>;
 use List::MoreUtils qw<apply>;
 use Getopt::Long;
 
 my %opts;
-GetOptions(\%opts, 'year=n');
+GetOptions(\%opts, 'year=n', 'force');
 
 die "$0 --year=NNNN /dir/mirror_repo /dir/flat_repo" if @ARGV < 2;
-
-use Parallel::ForkManager;
 
 my ($mirror_repo, $flat_mirror_repo) = apply { s</$><>; } @ARGV[0,1];
 my $dataset = $ARGV[2] || "*/*";
@@ -29,25 +28,16 @@ my @dataset = map {
     s<^/><>;                    #// wtfemacs
 } sort glob("${mirror_repo}/${dataset}");
 
+@dataset = shuffle(@dataset);
+
 chdir $mirror_repo;
 
-my $forkman = Parallel::ForkManager->new(2);
-
 my $ABORT = 0;
-$forkman->run_on_finish(
-    sub {
-        my ($exit_status, $pid) = @_;
-        if ($exit_status != 0) {
-            $ABORT = 1;
-        }
-    }
-);
 
 for my $dataset (@dataset) {
     last if $ABORT;
 
     say ">> $dataset->{filename}";
-    $forkman->start and next;
 
     my $cmd = "git log --format='%H %at' $dataset->{filename}";
     open my $fh, "-|", $cmd;
@@ -72,7 +62,7 @@ for my $dataset (@dataset) {
         my $flat_dir = $flat_mirror_repo . "/" . $dataset->{name} . "/" . $p_dir;
         my $flat_file_name =  $flat_dir . "/" . $p . "." . $dataset->{format};
 
-        last if !$opts{year} && -f $flat_file_name;
+        last if !$opts{force} && -f $flat_file_name;
 
         say ">> $flat_file_name";
         make_path($flat_dir) unless -d $flat_dir;
@@ -84,20 +74,28 @@ for my $dataset (@dataset) {
             while(-f $LOCK) {
                 sleep(1);
             }
-
             open(my $fh_lock, ">", $LOCK) or die $!;
+
             chdir($flat_mirror_repo);
-            my $rc = system(qw(git add), $prev_flat_dir);
-            if ($rc == 0) {
+
+            my $fn = $prev_flat_dir =~ s/\A${flat_mirror_repo}\///r;
+            my $rc = system(qw(git add), $fn);
+            if ($rc != 0) {
+                say "ERROR when running: git add $fn";
+                $ABORT = 1;
+            } else {
                 $rc = system(qw(git commit -m flatten));
+                if ($rc != 0) {
+                    say "Commit failed: $rc -- $fn";
+                    $ABORT = 1;
+                }
             }
             chdir($mirror_repo);
+
             close($fh_lock);
             unlink($LOCK);
         }
         $prev_flat_dir = $flat_dir;
     }
-    $forkman->finish;
 }
-$forkman->wait_all_children;
 
