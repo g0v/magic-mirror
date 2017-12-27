@@ -70,32 +70,42 @@ for my $dataset (@dataset) {
 
         state $prev_flat_dir;
         if (defined($prev_flat_dir) && $flat_dir ne $prev_flat_dir) {
-            my $LOCK = "/tmp/gitlock";
-            while(-f $LOCK) {
-                sleep(1);
-            }
-            open(my $fh_lock, ">", $LOCK) or die $!;
-
             chdir($flat_mirror_repo);
 
             my $fn = $prev_flat_dir =~ s/\A${flat_mirror_repo}\///r;
-            my $rc = system(qw(git add), $fn);
-            if ($rc != 0) {
-                say "ERROR when running: git add $fn";
-                $ABORT = 1;
-            } else {
-                $rc = system(qw(git commit -m flatten));
-                if ($rc != 0) {
-                    say "Commit failed: $rc -- $fn";
-                    $ABORT = 1;
-                }
-            }
-            chdir($mirror_repo);
+            $ABORT = commit_once($fn);
 
-            close($fh_lock);
-            unlink($LOCK);
+            chdir($mirror_repo);
         }
         $prev_flat_dir = $flat_dir;
     }
 }
 
+commit_once();
+
+sub commit_once {
+    my ($fn) = @_;
+    $fn //= "-A";
+
+    my $LOCK = "/tmp/gitlock";
+    while(-f $LOCK) {
+        sleep(1);
+    }
+    open(my $fh_lock, ">", $LOCK) or die $!;
+
+    my $ABORT = 0;
+    my $rc = system(qw(git add), $fn);
+    if ($rc != 0) {
+        say "ERROR when running: git add $fn";
+        $ABORT = 1;
+    } else {
+        $rc = system(qw(git commit -m flatten));
+        if ($rc != 0) {
+            say "Commit failed: $rc -- $fn";
+            $ABORT = 1;
+        }
+    }
+    close($fh_lock);
+    unlink($LOCK);
+    return $ABORT;
+}
