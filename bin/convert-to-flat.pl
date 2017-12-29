@@ -81,7 +81,9 @@ for my $dataset (@dataset) {
     }
 }
 
+chdir($flat_mirror_repo);
 commit_once();
+
 
 sub commit_once {
     my ($fn) = @_;
@@ -99,7 +101,7 @@ sub commit_once {
         say "ERROR when running: git add $fn";
         $ABORT = 1;
     } else {
-        $rc = system(qw(git commit -m flatten));
+        $rc = system(qw(git commit -a -m flatten --no-edit --author), 'Auto <nobody@somewhere>');
         if ($rc != 0) {
             say "Commit failed: $rc -- $fn";
             $ABORT = 1;
