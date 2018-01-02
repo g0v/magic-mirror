@@ -21,7 +21,7 @@
     },
     {
         "name": "空氣品質即時監測資料",
-        "url": "http://cdx.epa.gov.tw/CDX/OpenData/PSI.xml",
+        "url": "https://cdx.epa.gov.tw/CDX/OpenData/PSI.xml",
         "output": "epa/air-quality.xml"
     },
     {
