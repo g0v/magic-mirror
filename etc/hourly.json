@@ -10,16 +10,6 @@
         "output": "epa/aqfn.csv"
     },
     {
-        "name": "空氣品質即時監測資料 (JSON)",
-        "url": "http://opendata.epa.gov.tw/ws/Data/AQX/?$orderby=SiteName&$skip=0&$top=1001&format=json",
-        "output": "epa/aqx.json"
-    },
-    {
-        "name": "空氣品質即時監測資料 (CSV)",
-        "url": "http://opendata.epa.gov.tw/ws/Data/AQX/?$orderby=SiteName&$skip=0&$top=1000&format=csv",
-        "output": "epa/aqx.csv"
-    },
-    {
         "name": "空氣品質即時監測資料",
         "url": "https://cdx.epa.gov.tw/CDX/OpenData/PSI.xml",
         "output": "epa/air-quality.xml"
