@@ -56,7 +56,7 @@
     },
     {
         "name": "消費者端量測各業者縣市平均行動上網速率",
-        "url": "http://www.ncc.gov.tw/chinese/files/opendata/%E8%A1%8C%E7%B6%B2%E6%95%B8%E6%93%9A-%E6%B6%88%E8%B2%BB%E8%80%85%E7%AB%AF%E9%87%8F%E6%B8%AC.csv",
+        "url": "https://www.ncc.gov.tw/chinese/files/opendata/%E8%A1%8C%E7%B6%B2%E6%95%B8%E6%93%9A-%E6%B6%88%E8%B2%BB%E8%80%85%E7%AB%AF%E9%87%8F%E6%B8%AC.csv"
         "output": "ncc/mobile-speed-consumer.csv"
     },
     {
