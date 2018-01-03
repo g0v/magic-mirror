@@ -23,8 +23,8 @@ for my $config (<${FindBin::Bin}/../etc/*.json>) {
             $site->{name},
             $frequency,
             $site->{url},
-            $base_url . $site->{output},
-            $site->{process} ? $base_url . $site->{process}{output} : "",
+            ($site->{output} ? $base_url . $site->{output} : ""),
+            ($site->{process} ? $base_url . $site->{process}{output} : ""),
         ];
     }
 }
