@@ -102,7 +102,7 @@ sub commit_once {
         $ABORT = 1;
     } else {
         $rc = system(qw(git commit -a -m flatten --no-edit --author), 'Auto <nobody@somewhere>');
-        if ($rc != 0) {
+        if ($rc != 0 && (($rc >> 8) != 1)) {
             say "Commit failed: $rc -- $fn";
             $ABORT = 1;
         }
