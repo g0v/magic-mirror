@@ -56,6 +56,11 @@
         "output": "taipower/loadareas.csv"
     },
     {
+        "name": "台電今日用電曲線圖-區域別供需統計",
+        "url": "https://www.taipower.com.tw/d006/loadGraph/loadGraph/data/genloadareaperc.csv",
+        "output": "taipower/genloadareaperc.csv"
+    },
+    {
         "name": "台電今日用電曲線圖-依能源類別",
         "url": "https://www.taipower.com.tw/d006/loadGraph/loadGraph/data/loadfueltype.csv",
         "output": "taipower/loadfueltype.csv"
