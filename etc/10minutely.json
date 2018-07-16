@@ -43,7 +43,7 @@
     },
     {
         "name": "台電機組發電量",
-        "url": "http://stpc00601.taipower.com.tw/loadGraph/loadGraph/data/genary.txt",
+        "url": "http://data.taipower.com.tw/opendata01/apply/file/d006001/001.txt",
         "output": "taipower/genary.txt",
         "process": {
             "processor": "taipower-genary-to-json",
