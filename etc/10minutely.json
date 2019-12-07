@@ -9,14 +9,6 @@
 	"comment": "Data source http://tisvcloud.freeway.gov.tw/"
     },
     {
-        "name": "YouBike臺北市公共自行車即時資訊",
-        "url": "http://data.taipei/youbike",
-        "process": {
-            "processor": "gzip-decompress",
-            "output": "tpc/youbike-stations.json"
-        }
-    },
-    {
         "name": "EMIC災害應變",
         "url": "http://portal.emic.gov.tw/pub/DSP/OpenData/EEM/CEOCopen.xml",
         "output": "emic/CEOCopen.xml"
