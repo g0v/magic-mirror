@@ -22,9 +22,13 @@ sub {
     my (undef, @power)   = split($p => $csv->[4]);
 
     my $status_code_to_text = {};
-    for (@{$csv}[7..$#$csv]) {
-        my ($n,$text) = split /:/;
-        $status_code_to_text->{$n} = $text;
+    for my $line (@{$csv}[7..$#$csv]) {
+        my ($n,$text) = split /:/, $line;
+        if (defined($n) && defined($text)) {
+            $status_code_to_text->{$n} = $text;
+        } else {
+            last;
+        }
     }
 
     my $localtime = sprintf("%04d-%02d-%02dT%02d:%02d:%02d+08", @t);
