@@ -1,0 +1,140 @@
+[
+   {
+      "collection" : "tisv",
+      "comment" : "Data source http://tisvcloud.freeway.gov.tw/",
+      "description" : "TISV 路段靜態資訊",
+      "name" : "roadlevel_info",
+      "url" : "http://tisvcloud.freeway.gov.tw/roadlevel_info.xml.gz",
+      "workflow" : [
+         {
+            "format" : "xml",
+            "processor" : "gzip-decompress"
+         }
+      ]
+   },
+   {
+      "collection" : "tpc",
+      "description" : "臺北市今日施工資訊",
+      "name" : "today-construction",
+      "url" : "http://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire&rid=201d8ae8-dffc-4d17-ae1f-e58d8a95b162",
+      "workflow" : [
+         {
+            "format" : "json",
+            "processor" : "save-as-is"
+         }
+      ]
+   },
+   {
+      "collection" : "coa",
+      "description" : "國產牛肉追溯資訊系統 (牛隻屠宰日期及場所)",
+      "name" : "beef-slaughter",
+      "url" : "http://data.coa.gov.tw/Service/OpenData/TraceBeefData.aspx",
+      "workflow" : [
+         {
+            "format" : "json",
+            "processor" : "save-as-is"
+         }
+      ]
+   },
+   {
+      "collection" : "coa",
+      "description" : "毛豬交易行情",
+      "name" : "animal-transaction",
+      "url" : "http://m.coa.gov.tw/OpenData/AnimalTransData.aspx",
+      "workflow" : [
+         {
+            "format" : "json",
+            "processor" : "save-as-is"
+         }
+      ]
+   },
+   {
+      "collection" : "epa",
+      "description" : "全國細懸浮微粒手動監測資料",
+      "name" : "pm25",
+      "url" : "http://opendata.epa.gov.tw/ws/Data/PM25/?format=csv",
+      "workflow" : [
+         {
+            "format" : "csv",
+            "processor" : "save-as-is"
+         }
+      ]
+   },
+   {
+      "collection" : "coa",
+      "description" : "糧價查詢",
+      "name" : "rice-price",
+      "url" : "http://m.coa.gov.tw/opendata/RicepriceData.aspx",
+      "workflow" : [
+         {
+            "format" : "json",
+            "processor" : "save-as-is"
+         }
+      ]
+   },
+   {
+      "collection" : "ly",
+      "description" : "立法院委員發言名單 CSV",
+      "name" : "223_CSV",
+      "url" : "http://data.ly.gov.tw/odw/usageFile.action?id=223&type=CSV&fname=223_CSV.csv",
+      "workflow" : [
+         {
+            "format" : "csv",
+            "processor" : "save-as-is"
+         }
+      ]
+   },
+   {
+      "collection" : "ly",
+      "description" : "立法院 各委員會-委員名單資料 CSV",
+      "name" : "14_CSV",
+      "url" : "http://data.ly.gov.tw/odw/usageFile.action?id=14&type=CSV&fname=14_CSV.csv",
+      "workflow" : [
+         {
+            "format" : "csv",
+            "processor" : "save-as-is"
+         }
+      ]
+   },
+   {
+      "collection" : "water",
+      "description" : "停水資訊",
+      "name" : "suspension",
+      "url" : "http://www.water.gov.tw/06news/opendata_taiwater.asp",
+      "workflow" : [
+         {
+            "format" : "csv",
+            "processor" : "save-as-is"
+         },
+         {
+            "format" : "json",
+            "processor" : "water-suspension-to-json"
+         }
+      ]
+   },
+   {
+      "collection" : "epa",
+      "description" : "全國細懸浮微粒手動監測資料",
+      "name" : "pm25",
+      "url" : "http://opendata.epa.gov.tw/ws/Data/PM25/?format=json",
+      "workflow" : [
+         {
+            "format" : "json",
+            "processor" : "save-as-is"
+         }
+      ]
+   },
+   {
+      "collection" : "ntpc",
+      "description" : "新北市公車路線清單",
+      "name" : "bus-routes",
+      "url" : "http://data.ntpc.gov.tw/od/data/api/5D3B5FE3-549A-40D5-8FA3-0C691230B213?$format=csv",
+      "workflow" : [
+         {
+            "format" : "csv",
+            "processor" : "save-as-is"
+         }
+      ]
+   }
+]
+

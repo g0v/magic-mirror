@@ -1,0 +1,188 @@
+[
+   {
+      "collection" : "tisv",
+      "comment" : "Data source http://tisvcloud.freeway.gov.tw/",
+      "description" : "TISV 路段五分鐘動態資訊",
+      "name" : "roadlevel_value5",
+      "url" : "http://tisvcloud.freeway.gov.tw/roadlevel_value5.xml.gz",
+      "workflow" : [
+         {
+            "format" : "xml",
+            "processor" : "gzip-decompress"
+         }
+      ]
+   },
+   {
+      "collection" : "emic",
+      "description" : "EMIC災害應變",
+      "name" : "CEOCopen",
+      "url" : "http://portal.emic.gov.tw/pub/DSP/OpenData/EEM/CEOCopen.xml",
+      "workflow" : [
+         {
+            "format" : "xml",
+            "processor" : "save-as-is"
+         }
+      ]
+   },
+   {
+      "collection" : "cwb",
+      "description" : "顯著有感地震報告",
+      "name" : "earthquake",
+      "url" : "http://opendata.cwb.gov.tw/govdownload?dataid=E-A0015-001R&authorizationkey=rdec-key-123-45678-011121314",
+      "workflow" : [
+         {
+            "format" : "xml",
+            "processor" : "save-as-is"
+         }
+      ]
+   },
+   {
+      "collection" : "cwb",
+      "description" : "自動雨量站-雨量觀測資料",
+      "name" : "rain-probe",
+      "url" : "http://opendata.cwb.gov.tw/govdownload?dataid=O-A0002-001&authorizationkey=rdec-key-123-45678-011121314",
+      "workflow" : [
+         {
+            "format" : "xml",
+            "processor" : "save-as-is"
+         }
+      ]
+   },
+   {
+      "collection" : "moi",
+      "description" : "警廣即時路況",
+      "name" : "realtime-traffic-condition",
+      "url" : "http://data.moi.gov.tw/MoiOD/System/DownloadFile.aspx?DATA=1E91AC2B-48B3-47A3-83B4-EB4A8AD930B9",
+      "workflow" : [
+         {
+            "format" : "json",
+            "processor" : "save-as-is"
+         }
+      ]
+   },
+   {
+      "collection" : "nat",
+      "description" : "中央氣象局雨量站觀測資料 - 每10分鐘雨量站觀測資料",
+      "name" : "cwb-rain",
+      "url" : "https://alerts.ncdr.nat.gov.tw/DownLoadNewAssistData.ashx/5",
+      "workflow" : [
+         {
+            "format" : "kml",
+            "processor" : "save-as-is"
+         }
+      ]
+   },
+   {
+      "collection" : "taipower",
+      "description" : "台電機組發電量",
+      "name" : "genary",
+      "url" : "http://data.taipower.com.tw/opendata01/apply/file/d006001/001.txt",
+      "workflow" : [
+         {
+            "format" : "txt",
+            "processor" : "save-as-is"
+         },
+         {
+            "format" : "json",
+            "processor" : "taipower-genary-to-json"
+         }
+      ]
+   },
+   {
+      "collection" : "taipower",
+      "description" : "台電今日用電曲線圖-依區域別",
+      "name" : "loadareas",
+      "url" : "https://www.taipower.com.tw/d006/loadGraph/loadGraph/data/loadareas.csv",
+      "workflow" : [
+         {
+            "format" : "csv",
+            "processor" : "save-as-is"
+         }
+      ]
+   },
+   {
+      "collection" : "taipower",
+      "description" : "台電今日用電曲線圖-區域別供需統計",
+      "name" : "genloadareaperc",
+      "url" : "https://www.taipower.com.tw/d006/loadGraph/loadGraph/data/genloadareaperc.csv",
+      "workflow" : [
+         {
+            "format" : "csv",
+            "processor" : "save-as-is"
+         }
+      ]
+   },
+   {
+      "collection" : "taipower",
+      "description" : "台電今日用電曲線圖-依能源類別",
+      "name" : "loadfueltype",
+      "url" : "https://www.taipower.com.tw/d006/loadGraph/loadGraph/data/loadfueltype.csv",
+      "workflow" : [
+         {
+            "format" : "csv",
+            "processor" : "save-as-is"
+         }
+      ]
+   },
+   {
+      "collection" : "ntpc",
+      "description" : "新北市-車輛偵測器動態資訊",
+      "name" : "vehicle-detection",
+      "url" : "http://data.ntpc.gov.tw/api/v1/rest/datastore/382000000A-000357-001",
+      "workflow" : [
+         {
+            "format" : "json",
+            "processor" : "save-as-is"
+         }
+      ]
+   },
+   {
+      "collection" : "ntpc",
+      "description" : "新北市公有路外停車場即時賸餘車位數",
+      "name" : "parking-availability",
+      "url" : "http://data.ntpc.gov.tw/od/data/api/E09B35A5-A738-48CC-B0F5-570B67AD9C78?$format=csv",
+      "workflow" : [
+         {
+            "format" : "csv",
+            "processor" : "save-as-is"
+         }
+      ]
+   },
+   {
+      "collection" : "ntpc",
+      "description" : "新北市公車到站預估資料",
+      "name" : "bus-stop-estimation",
+      "url" : "http://data.ntpc.gov.tw/od/data/api/CE74A94B-36D2-4482-A25D-670625ED0678?$format=csv",
+      "workflow" : [
+         {
+            "format" : "csv",
+            "processor" : "save-as-is"
+         }
+      ]
+   },
+   {
+      "collection" : "ntpc",
+      "description" : "新北市垃圾清運車輛所在位置",
+      "name" : "garbage-collection-trunk-position",
+      "url" : "http://data.ntpc.gov.tw/od/data/api/28AB4122-60E1-4065-98E5-ABCCB69AACA6?$format=csv",
+      "workflow" : [
+         {
+            "format" : "csv",
+            "processor" : "save-as-is"
+         }
+      ]
+   },
+   {
+      "collection" : "ntpc",
+      "description" : "新北市公共自行車租賃系統(YouBike)",
+      "name" : "youbike-stations",
+      "url" : "http://data.ntpc.gov.tw/api/v1/rest/datastore/382000000A-000352-001",
+      "workflow" : [
+         {
+            "format" : "json",
+            "processor" : "save-as-is"
+         }
+      ]
+   }
+]
+

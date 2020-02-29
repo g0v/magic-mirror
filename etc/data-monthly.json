@@ -1,0 +1,171 @@
+[
+   {
+      "collection" : "data",
+      "description" : "政府資料開放平臺資料集清單",
+      "name" : "list",
+      "url" : "https://data.gov.tw/datasets/export/csv",
+      "workflow" : [
+         {
+            "format" : "csv",
+            "processor" : "save-as-is"
+         }
+      ]
+   },
+   {
+      "collection" : "data",
+      "description" : "政府資料開放平臺資料集清單 (JSON)",
+      "name" : "list-official",
+      "url" : "http://file.data.gov.tw/opendatafile/%E6%94%BF%E5%BA%9C%E8%B3%87%E6%96%99%E9%96%8B%E6%94%BE%E5%B9%B3%E8%87%BA%E8%B3%87%E6%96%99%E9%9B%86%E6%B8%85%E5%96%AE.json",
+      "workflow" : [
+         {
+            "format" : "json",
+            "processor" : "save-as-is"
+         }
+      ]
+   },
+   {
+      "collection" : "water",
+      "description" : "http://data.gov.tw/node/6308",
+      "name" : "waterquality",
+      "url" : "http://www.water.gov.tw/files/new_opendata_waterquality.csv",
+      "workflow" : [
+         {
+            "format" : "csv",
+            "processor" : "save-as-is"
+         }
+      ]
+   },
+   {
+      "collection" : "epa",
+      "description" : "全國焚化廠空污檢測資料",
+      "name" : "SWIMSAir",
+      "url" : "http://opendata.epa.gov.tw/ws/Data/SWIMSAir/?format=json",
+      "workflow" : [
+         {
+            "format" : "json",
+            "processor" : "save-as-is"
+         }
+      ]
+   },
+   {
+      "collection" : "epa",
+      "description" : "水庫水質監測資料",
+      "name" : "WQXDam",
+      "url" : "http://opendata.epa.gov.tw/ws/Data/WQXDam/?format=csv",
+      "workflow" : [
+         {
+            "format" : "csv",
+            "processor" : "save-as-is"
+         }
+      ]
+   },
+   {
+      "collection" : "epa",
+      "description" : "各工廠空氣污染物排放資料 (各列管工廠依法規向地方主管機關申報之排放量資料)",
+      "name" : "FactoryAirPollutant",
+      "url" : "http://opendata.epa.gov.tw/ws/Data/FactoryAirPollutant/?format=csv",
+      "workflow" : [
+         {
+            "format" : "csv",
+            "processor" : "save-as-is"
+         }
+      ]
+   },
+   {
+      "collection" : "epa",
+      "description" : "電磁波量測資料",
+      "name" : "RADElecWave",
+      "url" : "http://opendata.epa.gov.tw/ws/Data/RADElecWave/?format=csv",
+      "workflow" : [
+         {
+            "format" : "csv",
+            "processor" : "save-as-is"
+         }
+      ]
+   },
+   {
+      "collection" : "gamerating",
+      "description" : "經濟部工業局 遊戲軟體分級",
+      "name" : "gamerating",
+      "url" : "http://www.gamerating.org.tw/download_rating.php",
+      "workflow" : [
+         {
+            "format" : "csv",
+            "processor" : "save-as-is"
+         }
+      ]
+   },
+   {
+      "collection" : "moi",
+      "description" : "全國宗教資訊系統資料-慶(祭)典",
+      "name" : "religion-festival",
+      "url" : "http://religion.moi.gov.tw/Report/Festival.xml",
+      "workflow" : [
+         {
+            "format" : "xml",
+            "processor" : "save-as-is"
+         }
+      ]
+   },
+   {
+      "collection" : "ncc",
+      "description" : "移動式量測各業者量測路線平均行動上網速率",
+      "name" : "mobile-speed-dynamic-location",
+      "url" : "https://www.ncc.gov.tw/chinese/files/opendata/%E8%A1%8C%E7%B6%B2%E6%95%B8%E6%93%9A-%E7%A7%BB%E5%8B%95%E5%BC%8F%E9%87%8F%E6%B8%AC.csv",
+      "workflow" : [
+         {
+            "format" : "csv",
+            "processor" : "save-as-is"
+         }
+      ]
+   },
+   {
+      "collection" : "ncc",
+      "description" : "定點量測各業者平均行動上網速率",
+      "name" : "mobile-speed-fixed-location",
+      "url" : "https://www.ncc.gov.tw/chinese/files/opendata/%E8%A1%8C%E7%B6%B2%E6%95%B8%E6%93%9A-%E5%AE%9A%E9%BB%9E%E9%87%8F%E6%B8%AC.csv",
+      "workflow" : [
+         {
+            "format" : "csv",
+            "processor" : "save-as-is"
+         }
+      ]
+   },
+   {
+      "collection" : "ncc",
+      "description" : "消費者端量測各業者縣市平均行動上網速率",
+      "name" : "mobile-speed-consumer",
+      "url" : "https://www.ncc.gov.tw/chinese/files/opendata/%E8%A1%8C%E7%B6%B2%E6%95%B8%E6%93%9A-%E6%B6%88%E8%B2%BB%E8%80%85%E7%AB%AF%E9%87%8F%E6%B8%AC.csv",
+      "workflow" : [
+         {
+            "format" : "csv",
+            "processor" : "save-as-is"
+         }
+      ]
+   },
+   {
+      "collection" : "ocac",
+      "description" : "海外華人人數",
+      "name" : "aboard_chinese_count",
+      "url" : "http://www.ocac.gov.tw/public/DownFile/File_24979.csv",
+      "workflow" : [
+         {
+            "format" : "csv",
+            "processor" : "save-as-is"
+         }
+      ]
+   },
+   {
+      "collection" : "aec",
+      "description" : "核子反應器設施持照運轉員人數",
+      "name" : "nuclear_powerplant_licensed_operator_count",
+      "url" : "http://www.aec.gov.tw/webpage/info/files/index_15_1-06.csv",
+      "workflow" : [
+         {
+            "format" : "csv",
+            "processor" : "save-as-is"
+         }
+      ]
+   }
+]
+
