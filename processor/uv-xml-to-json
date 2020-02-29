@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use utf8;
 use Encode ();
-use JSON::PP ();
+use JSON ();
 use XML::Loy;
 use Geo::Coordinates::Converter;
 
@@ -38,5 +38,5 @@ sub {
         push @data, $data;
     }
 
-    return JSON::PP->new->utf8->pretty->canonical->encode(\@data);
+    return JSON->new->utf8->pretty->canonical->encode(\@data);
 }

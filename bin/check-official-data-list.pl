@@ -4,12 +4,12 @@ use strict;
 use warnings;
 
 use URI;
-use JSON::PP;
+use JSON;
 use File::Slurp qw(read_file);
 use Encode qw(encode_utf8 decode_utf8);
 use HTTP::Tiny;
 
-my $JSON = JSON::PP->new->utf8->canonical;
+my $JSON = JSON->new->utf8->canonical;
 
 sub report_error {
     my ($error) = @_;
@@ -23,7 +23,7 @@ my $input = $ARGV[0] or exit(1);
 
 my $list_json = read_file($input);
 
-my $res = JSON::PP->new->utf8->decode($list_json);
+my $res = $JSON->decode($list_json);
 
 my @errors;
 my %seen;

@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use utf8;
 use Encode ();
-use JSON::PP ();
+use JSON ();
 
 sub {
     my $content = $_[0];
@@ -26,5 +26,5 @@ sub {
         } 1..$#$csv
     ];
 
-    return JSON::PP->new->utf8->pretty->canonical->encode($monitors);
+    return JSON->new->utf8->pretty->canonical->encode($monitors);
 }

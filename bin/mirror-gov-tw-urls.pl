@@ -5,7 +5,7 @@ use warnings;
 use autodie;
 
 use FindBin;
-use JSON::PP;
+use JSON;
 use HTTP::Tiny;
 use Getopt::Std;
 use File::Basename ("dirname", "basename");
@@ -62,7 +62,7 @@ exit(1) if -f "/tmp/stop-magic-mirror";
 my %opts; getopts("vgho:c:j:", \%opts);
 
 if ($opts{c} && $opts{o}) {
-    my $sites = JSON::PP->new->utf8->decode( read_file($opts{c}) );
+    my $sites = JSON->new->utf8->decode( read_file($opts{c}) );
 
     @$sites = grep { $_->{name} && $_->{url} && ($_->{output} || $_->{process}) } @$sites;
 

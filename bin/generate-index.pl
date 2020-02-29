@@ -2,13 +2,13 @@
 use v5.14;
 use strict;
 use FindBin;
-use JSON::PP;
+use JSON;
 use Getopt::Std;
 
 my %opts;
 getopts("o:b:", \%opts);
 
-my $json = JSON::PP->new->utf8;
+my $json = JSON->new->utf8;
 
 my $base_url = $opts{b} || "http://g0v-data-mirror.gugod.org/";
 my @entries;

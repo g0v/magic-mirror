@@ -7,10 +7,10 @@ use Text::CSV;
 use YAML;
 use List::MoreUtils qw(mesh);
 use File::Temp qw(tempfile);
-use JSON::PP;
+use JSON;
 
 sub {
-    my $json = JSON::PP->new->canonical->utf8->pretty;
+    my $json = JSON->new->canonical->utf8->pretty;
     my $content = $_[0];
 
     my $out = tempfile();

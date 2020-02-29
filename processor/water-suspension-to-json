@@ -57,7 +57,7 @@ use strict;
 use warnings;
 
 use Encode ();
-use JSON::PP;
+use JSON;
 use Text::CSV;
 use IO::String;
 use List::MoreUtils qw(mesh);
@@ -114,6 +114,6 @@ sub {
         @{$entry}{"publish_from", "publish_until"} = split "/", $entry->{publish_duration};
     }
 
-    return JSON::PP->new->utf8->pretty->canonical->encode(\@entry);
+    return JSON->new->utf8->pretty->canonical->encode(\@entry);
 }
 

@@ -4,12 +4,12 @@ use utf8;
 use strict;
 use warnings;
 use Encode ();
-use JSON::PP;
+use JSON;
 use IO::String;
 use List::MoreUtils qw(mesh);
 
 sub {
-    my $json = JSON::PP->new->canonical->utf8->pretty;
+    my $json = JSON->new->canonical->utf8->pretty;
 
     my $orig = $json->decode($_[0]);
     my $updated_at = $orig->{""}."+08";
