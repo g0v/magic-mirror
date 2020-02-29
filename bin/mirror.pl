@@ -49,7 +49,7 @@ sub current_time {
 sub output_file {
     my ($dir, $collection, $dataset, $format) = @_;
     my ($ymd, $hms) = current_time();
-    my $path = path($dir)->child($collection, $ymd, $hms, $dataset . '.' . $format);
+    my $path = path($dir)->child($collection, $dataset, $ymd, $hms, $dataset . '.' . $format);
     $path->parent->mkpath;
     return $path;
 }
