@@ -41,15 +41,15 @@ sub current_time {
     $mon += 1;
 
     return (
-        sprintf('%04d-%02d-%02d', $year, $mon, $mday),
-        sprintf('%02d-%02d-%02d', $hour, $min, 0),
+        sprintf('%04d%02d%02d', $year, $mon, $mday),
+        sprintf('%02d%02d%02d', $hour, $min, 0),
     );
 }
 
 sub output_file {
     my ($dir, $collection, $dataset, $format) = @_;
     my ($ymd, $hms) = current_time();
-    my $path = path($dir)->child($collection, $dataset, $ymd, $hms, $dataset . '.' . $format);
+    my $path = path($dir)->child($collection, $ymd, $hms, $dataset . '.' . $format);
     $path->parent->mkpath;
     return $path;
 }
