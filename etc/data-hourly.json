@@ -1,0 +1,30 @@
+[
+    {
+        "collection": "epa",
+        "name": "aqfn",
+        "description": "空氣品質預報資料",
+        "url": "http://opendata.epa.gov.tw/ws/Data/AQFN/?format=csv",
+        "workflow": [
+            { "processor": "save-as-is", "format": "csv" }
+        ]
+    },
+    {
+        "collection": "epa",
+        "name": "air-quality",
+        "description": "空氣品質即時監測資料",
+        "url": "https://cdx.epa.gov.tw/CDX/OpenData/PSI.xml",
+        "workflow": [
+            { "processor": "save-as-is", "format": "xml" }
+        ]
+    },
+    {
+        "collection": "epa",
+        "name": "uv",
+        "description": "紫外線即時監測資料",
+        "url": "https://cdx.epa.gov.tw/CDX/OpenData/UV.xml",
+        "workflow": [
+            { "processor": "save-as-is", "format": "xml" },
+            { "processor": "uv-xml-to-json", "format": "json" }
+        ]
+    }
+]
