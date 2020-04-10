@@ -1,3 +1,4 @@
+requires "MCE" => 0;
 requires "Archive::Zip" => 0;
 requires "File::Slurp" => 0;
 requires "Geo::Coordinates::Converter" => 0;

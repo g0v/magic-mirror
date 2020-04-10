@@ -10,6 +10,7 @@ use Try::Tiny;
 use HTTP::Tiny;
 use Path::Tiny qw(path);
 use Getopt::Std;
+use MCE::Loop;
 
 sub fetch {
     my $url = shift;
@@ -18,7 +19,7 @@ sub fetch {
     if ($response->{success}) {
         return $response->{content};
     }
-    warn "fetch failed: url = $url";
+    MCE->say("failed to fetch: $url");
     return;
 }
 
@@ -57,7 +58,7 @@ sub output_file {
 sub work {
     my ($output_directory, $dataset) = @_;
 
-    say "FETCH: $dataset->{url}";
+    MCE->say("FETCH: $dataset->{url}");
     my $content = fetch($dataset->{url}) or return;
 
     for my $step (@{ $dataset->{workflow} }) {
@@ -71,7 +72,7 @@ sub work {
         );
 
         $p->spew($output);
-        say "SAVED: $p";
+        MCE->say("SAVED: $p");
     }
 }
 
@@ -88,12 +89,18 @@ unless ($opts{c} && $opts{o}) {
 
 my $datasets = JSON->new->utf8->decode( scalar path($opts{c})->slurp );
 
-for my $dataset (@$datasets) {
-    say "START: $dataset->{collection} / $dataset->{name}";
+MCE::Loop::init {
+    max_workers => 4, chunk_size => 1
+};
+
+mce_loop {
+    my $dataset = $_;
+
+    MCE->say("START: $dataset->{collection} / $dataset->{name}");
     try {
         work($opts{o}, $dataset);
     } catch {
-        warn "ERROR: $_";
+        MCE->say("ERROR: $_");
     };
-    say "DONE: $dataset->{collection} / $dataset->{name}";
-}
+    MCE->say("DONE: $dataset->{collection} / $dataset->{name}");
+} @$datasets;
