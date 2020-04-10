@@ -1,5 +1,18 @@
 [
     {
+        "collection": "nhi",
+        "name": "maskata",
+        "description": "健保特約機構口罩剩餘數量明細清單",
+        "refresh": "10minutely",
+        "url": "https://data.nhi.gov.tw/resource/mask/maskdata.csv",
+        "workflow": [
+            {
+                "processor": "save-as-is",
+                "format": "csv"
+            }
+        ]
+    },
+    {
         "collection": "aec",
         "name": "gammamonitor",
         "description": "全國環境輻射偵測",
