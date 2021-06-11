@@ -1,4 +1,17 @@
 [
+    {
+        "collection": "cdc",
+        "comment": "Data source: https://data.cdc.gov.tw/dataset/daily-cases-suspected-sars-cov-2-infection_tested",
+        "description": "台灣COVID-19冠狀病毒檢測每日送驗數",
+        "name": "covid_tw_specimen",
+        "url": "https://od.cdc.gov.tw/eic/covid19/covid19_tw_specimen.csv",
+        "workflow" : [
+            {
+                "format" : "csv",
+                "processor" : "save-as-is"
+            }
+        ]
+    },
    {
       "collection" : "tisv",
       "comment" : "Data source http://tisvcloud.freeway.gov.tw/",
