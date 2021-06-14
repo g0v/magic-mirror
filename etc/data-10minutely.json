@@ -200,7 +200,7 @@
         "collection" : "ntpc",
         "description" : "新北市垃圾清運車輛所在位置",
         "name" : "garbage-collection-trunk-position",
-        "url" : "http://data.ntpc.gov.tw/od/data/api/28AB4122-60E1-4065-98E5-ABCCB69AACA6?$format=csv",
+        "url" : "https://data.ntpc.gov.tw/api/datasets/28AB4122-60E1-4065-98E5-ABCCB69AACA6/csv/file",
         "workflow" : [
             {
                 "format" : "csv",
