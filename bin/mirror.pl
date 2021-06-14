@@ -19,7 +19,6 @@ sub fetch {
     if ($response->{success}) {
         return $response->{content};
     }
-    MCE->say("failed to fetch: $url");
     return;
 }
 
@@ -57,9 +56,14 @@ sub output_file {
 
 sub work {
     my ($output_directory, $dataset) = @_;
+    my $logprefix = "[$dataset->{collection}::$dataset->{name}]";
 
-    MCE->say("FETCH: $dataset->{url}");
-    my $content = fetch($dataset->{url}) or return;
+    my $content = fetch($dataset->{url});
+    if (defined($content)) {
+        MCE->say("$logprefix FETCH OK: $dataset->{url}");
+    } else {
+        MCE->say("$logprefix FETCH FAIL: $dataset->{url}");
+    }
 
     for my $step (@{ $dataset->{workflow} }) {
         my $output = process( $step->{processor}, $content ) or next;
@@ -72,7 +76,7 @@ sub work {
         );
 
         $p->spew($output);
-        MCE->say("SAVED: $p");
+        MCE->say("$logprefix SAVED: $p");
     }
 }
 
@@ -104,16 +108,12 @@ MCE::Loop::init {
 
 mce_loop {
     my $dataset = $_;
-
     if (!@names || eq_any($dataset->{"name"}, \@names)) {
-        MCE->say("START: $dataset->{collection} / $dataset->{name}");
         try {
             work($opts{o}, $dataset);
         }
         catch {
-            MCE->say("ERROR: $_");
+            MCE->say("[$dataset->{collection}::$dataset->{name}] ERROR: $_");
         }
-        ;
-        MCE->say("DONE: $dataset->{collection} / $dataset->{name}");
     }
 } @$datasets;
