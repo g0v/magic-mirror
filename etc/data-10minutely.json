@@ -1,3 +1,4 @@
+
 [
     {
         "collection": "nhi",
@@ -33,7 +34,7 @@
         "collection": "aec",
         "name": "spds",
         "description": "核能電廠運轉資訊",
-        "url": "https://www.aec.gov.tw/open/spds.csv",
+        "url": "https://www.aec.gov.tw/dataopen/index.php?id=1",
         "refresh": "minutely",
         "workflow": [
             {
