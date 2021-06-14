@@ -174,18 +174,6 @@
     },
     {
         "collection" : "ntpc",
-        "description" : "新北市-車輛偵測器動態資訊",
-        "name" : "vehicle-detection",
-        "url" : "http://data.ntpc.gov.tw/api/v1/rest/datastore/382000000A-000357-001",
-        "workflow" : [
-            {
-                "format" : "json",
-                "processor" : "save-as-is"
-            }
-        ]
-    },
-    {
-        "collection" : "ntpc",
         "description" : "新北市公有路外停車場即時賸餘車位數",
         "name" : "parking-availability",
         "url" : "http://data.ntpc.gov.tw/od/data/api/E09B35A5-A738-48CC-B0F5-570B67AD9C78?$format=csv",
