@@ -76,6 +76,14 @@ sub work {
     }
 }
 
+sub eq_any {
+    my ($str, $arr) = @_;
+    for my $s (@$arr) {
+        return "1" if $s eq $str;
+    }
+    return ""
+}
+
 sub HELP_MESSAGE {
     die "$0 -c etc/data.json -o /data\n";
 }
@@ -86,6 +94,7 @@ getopts("vgho:c:j:", \%opts);
 unless ($opts{c} && $opts{o}) {
     HELP_MESSAGE();
 }
+my @names = @ARGV;
 
 my $datasets = JSON->new->utf8->decode( scalar path($opts{c})->slurp );
 
@@ -96,11 +105,15 @@ MCE::Loop::init {
 mce_loop {
     my $dataset = $_;
 
-    MCE->say("START: $dataset->{collection} / $dataset->{name}");
-    try {
-        work($opts{o}, $dataset);
-    } catch {
-        MCE->say("ERROR: $_");
-    };
-    MCE->say("DONE: $dataset->{collection} / $dataset->{name}");
+    if (!@names || eq_any($dataset->{"name"}, \@names)) {
+        MCE->say("START: $dataset->{collection} / $dataset->{name}");
+        try {
+            work($opts{o}, $dataset);
+        }
+        catch {
+            MCE->say("ERROR: $_");
+        }
+        ;
+        MCE->say("DONE: $dataset->{collection} / $dataset->{name}");
+    }
 } @$datasets;
