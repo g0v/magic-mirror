@@ -1,5 +1,17 @@
 [
    {
+      "collection" : "ntpc",
+      "description" : "新北市政府資料開放平臺資料集清單",
+      "name" : "datasets",
+      "url" : "https://data.ntpc.gov.tw/api/datasets/info/csv",
+      "workflow" : [
+         {
+            "format" : "csv",
+            "processor" : "save-as-is"
+         }
+      ]
+   },
+   {
       "collection" : "data",
       "description" : "政府資料開放平臺資料集清單",
       "name" : "list",
