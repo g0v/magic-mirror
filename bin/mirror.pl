@@ -22,7 +22,7 @@ sub fetch {
         $response = $ua->get($url);
 
         if ($response->{status} == 599) {
-            sleep($retries += 1);
+            sleep(5 * ($retries += 1));
         } else {
             last;
         }
