@@ -100,7 +100,7 @@
         "collection" : "moi",
         "description" : "警廣即時路況",
         "name" : "realtime-traffic-condition",
-        "url" : "http://data.moi.gov.tw/MoiOD/System/DownloadFile.aspx?DATA=1E91AC2B-48B3-47A3-83B4-EB4A8AD930B9",
+        "url" : "https://data.moi.gov.tw/MoiOD/System/DownloadFile.aspx?DATA=36384FA8-FACF-432E-BB5B-5F015E7BC1BE",
         "workflow" : [
             {
                 "format" : "json",
