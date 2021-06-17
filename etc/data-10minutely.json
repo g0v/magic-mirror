@@ -212,7 +212,7 @@
         "collection" : "ntpc",
         "description" : "新北市公共自行車租賃系統(YouBike)",
         "name" : "youbike-stations",
-        "url" : "http://data.ntpc.gov.tw/api/v1/rest/datastore/382000000A-000352-001",
+        "url" : "https://data.ntpc.gov.tw/api/datasets/71CD1490-A2DF-4198-BEF1-318479775E8A/json",
         "workflow" : [
             {
                 "format" : "json",
