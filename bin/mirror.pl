@@ -14,12 +14,21 @@ use MCE::Loop;
 
 sub fetch {
     my $url = shift;
+    my $retries = 0;
     my $ua = HTTP::Tiny->new;
-    my $response = $ua->get($url);
-    if ($response->{success}) {
-        return $response->{content};
+    my $response;
+
+    while ($retries < 2) {
+        $response = $ua->get($url);
+
+        if ($response->{status} == 599) {
+            sleep($retries += 1);
+        } else {
+            last;
+        }
     }
-    return;
+
+    return $response ->{success} ? $response->{content} : undef;
 }
 
 sub process {
