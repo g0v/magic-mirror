@@ -186,9 +186,9 @@
     },
     {
         "collection" : "ntpc",
-        "description" : "新北市公車到站預估資料",
+        "description" : "新北市公車預估到站時間",
         "name" : "bus-stop-estimation",
-        "url" : "http://data.ntpc.gov.tw/od/data/api/CE74A94B-36D2-4482-A25D-670625ED0678?$format=csv",
+        "url" : "https://data.ntpc.gov.tw/api/datasets/07F7CCB3-ED00-43C4-966D-08E9DAB24E95/csv",
         "workflow" : [
             {
                 "format" : "csv",
