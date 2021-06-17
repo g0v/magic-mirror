@@ -176,7 +176,7 @@
         "collection" : "ntpc",
         "description" : "新北市公有路外停車場即時賸餘車位數",
         "name" : "parking-availability",
-        "url" : "http://data.ntpc.gov.tw/od/data/api/E09B35A5-A738-48CC-B0F5-570B67AD9C78?$format=csv",
+        "url" : "https://data.ntpc.gov.tw/api/datasets/E09B35A5-A738-48CC-B0F5-570B67AD9C78/csv/file",
         "workflow" : [
             {
                 "format" : "csv",
