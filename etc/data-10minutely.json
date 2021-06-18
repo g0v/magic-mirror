@@ -61,18 +61,6 @@
         ]
     },
     {
-        "collection" : "emic",
-        "description" : "EMIC災害應變",
-        "name" : "CEOCopen",
-        "url" : "http://portal.emic.gov.tw/pub/DSP/OpenData/EEM/CEOCopen.xml",
-        "workflow" : [
-            {
-                "format" : "xml",
-                "processor" : "save-as-is"
-            }
-        ]
-    },
-    {
         "collection" : "cwb",
         "description" : "顯著有感地震報告",
         "name" : "earthquake",
