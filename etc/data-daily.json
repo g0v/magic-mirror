@@ -1,6 +1,19 @@
 [
     {
         "collection": "cdc",
+        "comment": "Data source: https://data.gov.tw/dataset/120450",
+        "description": "COVID-19台灣最新病例、檢驗統計",
+        "name": "covid19_tw_stats",
+        "url": "https://od.cdc.gov.tw/eic/covid19/covid19_tw_stats.csv",
+        "workflow" : [
+            {
+                "format" : "csv",
+                "processor" : "save-as-is"
+            }
+        ]
+    },
+    {
+        "collection": "cdc",
         "comment": "Data source: https://data.cdc.gov.tw/dataset/daily-cases-suspected-sars-cov-2-infection_tested",
         "description": "台灣COVID-19冠狀病毒檢測每日送驗數",
         "name": "covid_tw_specimen",
