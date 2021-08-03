@@ -54,7 +54,7 @@
       "collection" : "coa",
       "description" : "國產牛肉追溯資訊系統 (牛隻屠宰日期及場所)",
       "name" : "beef-slaughter",
-      "url" : "http://data.coa.gov.tw/Service/OpenData/TraceBeefData.aspx",
+      "url" : "https://data.coa.gov.tw/Service/OpenData/TraceBeefData.aspx",
       "workflow" : [
          {
             "format" : "json",
